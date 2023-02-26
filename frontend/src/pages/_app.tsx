@@ -8,9 +8,12 @@ import {
   useRecoilValue,
 } from "recoil";
 
+import Header from "../components/Header";
+
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <RecoilRoot>
+      <Header />
       <Component {...pageProps} />
     </RecoilRoot>
   );
