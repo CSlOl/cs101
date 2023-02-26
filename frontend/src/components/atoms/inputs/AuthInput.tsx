@@ -1,3 +1,11 @@
-export default function AuthInput() {
-  return <div>인풋 한줄짜리-- 로그인 등</div>;
+interface Props {
+  placeholder: string;
+}
+
+export default function AuthInput(props: Props) {
+  return (
+    <div>
+      <input type="text" placeholder={props.placeholder} />
+    </div>
+  );
 }

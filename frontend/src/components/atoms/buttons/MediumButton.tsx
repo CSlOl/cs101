@@ -1,3 +1,11 @@
-export default function MediumButton() {
-  return <div>중간 버튼</div>;
+interface Props {
+  label: string;
+}
+
+export default function MediumButton(props: Props) {
+  return (
+    <div>
+      <button>{props.label}</button>
+    </div>
+  );
 }
