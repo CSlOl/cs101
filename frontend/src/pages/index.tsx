@@ -3,15 +3,20 @@ import Image from "next/image";
 import { Inter } from "@next/font/google";
 import styles from "@/styles/Home.module.css";
 import { atom, useRecoilState, useRecoilValue } from "recoil";
+import styled from "@emotion/styled";
 import nameState from "../recoil/store";
 import Header from "../components/Header";
 
 const inter = Inter({ subsets: ["latin"] });
 
+const Div = styled.div``;
+
 export default function Home() {
   const [name, setName] = useRecoilState(nameState);
   return (
-    <div>{/* <Header /> */}</div>
+    <Div>
+      <Header />
+    </Div>
     // <>
     //   <Head>
     //     {/* <div>{name}</div> */}
