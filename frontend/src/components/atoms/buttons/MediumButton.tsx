@@ -1,11 +1,23 @@
-interface Props {
-  label: string;
-}
+import styled from "@emotion/styled";
 
-export default function MediumButton(props: Props) {
+const Button = styled.button`
+  font-family: "Press Start 2P";
+  width: 50%;
+  height: 50px;
+  background-color: #26bba0;
+  font-size: 2em;
+  border: none;
+  color: white;
+  &:hover {
+    cursor: pointer;
+    background-color: #25b097;
+  }
+`;
+
+export default function MediumButton() {
   return (
     <div>
-      <button>{props.label}</button>
+      <Button>START</Button>
     </div>
   );
 }
