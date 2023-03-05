@@ -9,17 +9,15 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class Favorites {
+@ToString(of = {"id", "name"})
+public class Topic {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "favorites_id")
+    @Column(name = "topic_id")
     private Long id;
+    private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-
-    @ManyToOne
-    @JoinColumn(name = "problem_id")
-    private Problem problem;
+    public Topic(String name) {
+        this.name = name;
+    }
 }

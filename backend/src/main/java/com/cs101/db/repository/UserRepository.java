@@ -1,4 +1,4 @@
-package com.cs101.db.repsitory;
+package com.cs101.db.repository;
 
 public class UserRepository {
 }
