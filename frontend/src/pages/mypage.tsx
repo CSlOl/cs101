@@ -1,3 +1,9 @@
+import Header from "../components/Header";
+
 export default function MyPage() {
-  return <div>마이페이지</div>;
+  return;
+  <>
+    <Header />
+    <div>마이페이지</div>;
+  </>;
 }
