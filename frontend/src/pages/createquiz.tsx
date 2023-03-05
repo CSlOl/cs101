@@ -1,3 +1,10 @@
+import Header from "../components/Header";
+
 export default function CreateQuiz() {
-  return <div>문제 등록</div>;
+  return (
+    <>
+      <Header />
+      <div>문제 등록</div>;
+    </>
+  );
 }
