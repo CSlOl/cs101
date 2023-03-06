@@ -1,3 +1,14 @@
+import UserCreatedQuizForm from "@/components/organisms/mypage/\bUserCreatedQuizForm";
+import PersonalQuizForm from "@/components/organisms/mypage/PersonalQuizForm";
+import UserInfoForm from "@/components/organisms/mypage/UserInfoForm";
+import styled from "@emotion/styled";
+
 export default function UserMyPage() {
-  return <div>사용자 마이페이지</div>;
+  return (
+    <>
+      <UserInfoForm />
+      <PersonalQuizForm />
+      <UserCreatedQuizForm />
+    </>
+  );
 }
