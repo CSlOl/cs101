@@ -1,10 +1,10 @@
 import styled from "@emotion/styled";
 
 const Tag = styled.button`
-  width: 100px;
-  height: 30px;
+  width: 70px;
+  height: 18px;
   background-color: #26bba0;
-  font-size: 1.1em;
+  font-size: 0.8em;
   border-radius: 10px;
   border: none;
   color: white;
