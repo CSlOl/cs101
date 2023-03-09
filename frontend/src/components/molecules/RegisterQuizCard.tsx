@@ -1,3 +1,12 @@
+import styled from "@emotion/styled";
+import RegisterListItem from "./RegisterListItem";
+
+const Container = styled.div``;
+
 export default function RegisterQuizCard() {
-  return <div>stack이 무엇인지 알아보자 | 승인 대기중</div>;
+  return (
+    <Container>
+      <RegisterListItem />
+    </Container>
+  );
 }
