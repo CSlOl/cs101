@@ -1,20 +1,20 @@
 import styled from "@emotion/styled";
 import { useState } from "react";
-import MediumTag from "../atoms/tags/MediumTag";
+import SmallTag from "../atoms/tags/SmallTag";
 
 const Container = styled.div`
-  display: relative;
-  margin-top: 10px;
-  width: 100%;
+  margin: 5px;
+  width: 95%;
 
   .quizList {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
     padding-left: 15px;
-    margin-top: 5px;
+    margin-top: 4px;
     background-color: rgba(255, 255, 255, 0.1);
-    height: 40px;
+    height: 55px;
     border-radius: 5px;
   }
 
@@ -23,39 +23,51 @@ const Container = styled.div`
   .quizAuth {
     display: flex;
     margin-right: 20px;
+    margin-top: 5px;
   }
 
-  .quizAuth {
-    color: red; // 나중에 css if 문 걸어야될거같..
+  .quizTitle {
+    display: block;
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; // 말줄임
+  }
+
+  .viewAll {
+    display: flex;
+    justify-content: end;
+    font-size: 0.8em;
+    margin-top: 10px;
   }
 `;
 
-export default function RegisterListItem() {
+export default function PersonalListItem() {
   const [quizCategory, setQuizCategory] = useState<string>("자료구조");
   const [quizType, setQuizType] = useState<string>("객관식");
-  const [authRequestStatus, setAuthRequestStatus] =
-    useState<string>("승인대기중");
 
   const titles: string[] = [
     "stack이 무엇인지 알아보자",
-    "queue가 무엇인지 알아보자",
+    "queue가 무엇인지 알asdfasdfasdf sdfsdfsdffsdfsdfsdf아보자",
     "deque가 무엇인지 알아보자",
   ];
 
   const titleList: JSX.Element[] = titles.map((title) => (
     <div className="quizList">
       <li className="quizTag">
-        <MediumTag category={quizCategory} />
-        <MediumTag type={quizType} />
+        <SmallTag category={quizCategory} />
+        <SmallTag type={quizType} />
       </li>
       <li className="quizTitle">{title}</li>
-      <li className="quizAuth">{authRequestStatus}</li>
     </div>
   ));
 
   return (
     <Container>
       <div>{titleList}</div>
+      <a href="" className="viewAll">
+        -&gt; 전체보기
+      </a>
     </Container>
   );
 }
