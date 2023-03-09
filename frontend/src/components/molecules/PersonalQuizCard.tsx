@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { useState } from "react";
+import PersonalListItem from "./PersonalListItem";
 
 const Card = styled.div`
   margin: 8px 8px 0 0;
@@ -26,7 +27,11 @@ const Card = styled.div`
   .cardList {
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 7px 0 7px 7px;
-    height: 85%;
+    height: 90%;
+  }
+
+  .cardListItem {
+    display: flex;
   }
 `;
 
@@ -43,7 +48,11 @@ export default function PersonalQuizCard(props: any) {
           {props.type} ({props.count})
         </div>
       </div>
-      <div className="cardList"></div>
+      <div className="cardList">
+        <div className="cardListItem">
+          <PersonalListItem />
+        </div>
+      </div>
     </Card>
   );
 }

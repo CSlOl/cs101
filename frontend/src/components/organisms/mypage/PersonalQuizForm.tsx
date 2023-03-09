@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import { useState } from "react";
 
 const Container = styled.div`
-  height: 49%;
+  height: 55%;
   border-radius: 10px;
   background-color: rgba(255, 255, 255, 0.2);
   padding: 15px;

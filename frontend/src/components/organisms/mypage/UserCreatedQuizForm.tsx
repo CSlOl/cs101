@@ -2,7 +2,7 @@ import RegisterQuizCard from "@/components/molecules/RegisterQuizCard";
 import styled from "@emotion/styled";
 
 const Container = styled.div`
-  height: 49%;
+  height: 43%;
   border-radius: 10px;
   background-color: rgba(255, 255, 255, 0.2);
   padding: 15px;
