@@ -1,8 +1,12 @@
 import styled from "@emotion/styled";
 
+interface Props {
+  label: string;
+}
+
 const Button = styled.button`
   font-family: "DungGeunMo";
-  width: 90%;
+  width: 95%;
   height: 50px;
   background-color: #26bba0;
   font-size: 2em;
@@ -15,6 +19,6 @@ const Button = styled.button`
   }
 `;
 
-export default function LargeButton() {
-  return <Button>제출하기</Button>;
+export default function LargeButton(props: Props) {
+  return <Button>{props.label}</Button>;
 }
