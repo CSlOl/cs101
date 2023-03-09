@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { useState } from "react";
-import SmallTag from "../atoms/tags/SmallTag";
+import MediumTag from "../atoms/tags/MediumTag";
 
 const Container = styled.div`
   display: relative;
@@ -45,8 +45,8 @@ export default function RegisterListItem() {
   const titleList: JSX.Element[] = titles.map((title) => (
     <div className="quizList">
       <li className="quizTag">
-        <SmallTag category={quizCategory} />
-        <SmallTag type={quizType} />
+        <MediumTag category={quizCategory} />
+        <MediumTag type={quizType} />
       </li>
       <li className="quizTitle">{title}</li>
       <li className="quizAuth">{authRequestStatus}</li>
