@@ -12,7 +12,7 @@ const Button = styled.button`
   font-size: 2em;
   border: none;
   color: white;
-  margin: 4px 0px;
+  margin: 10px 0px;
   &:hover {
     cursor: pointer;
     background-color: #25b097;
