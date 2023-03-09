@@ -13,19 +13,7 @@ const Container = styled.div`
     display: none;
   }
 
-  .button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-    border: none;
-    background: #fef289;
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    cursor: pointer;
-  }
-
+  .button,
   .image {
     display: flex;
     align-items: center;
