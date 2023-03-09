@@ -3,9 +3,12 @@ import styled from "@emotion/styled";
 import Link from "next/link";
 import { useState } from "react";
 
-const Div = styled.div`
-  position: absolute;
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   margin-left: 20px;
+  padding: 20px;
   width: 25%;
   height: 85vh;
   min-width: 250px;
@@ -16,7 +19,6 @@ const Div = styled.div`
 
 const UserInfoDiv = styled.div`
   positon: relative;
-  margin-top: 100px;
   text-align: center;
   color: white;
   font: 10px;
@@ -30,9 +32,8 @@ export default function UserInfoForm() {
   const [probNum, setProbNum] = useState<number>(1234);
 
   return (
-    <Div>
+    <Container>
       <ProfileImage />
-
       <UserInfoDiv>
         <Link href="/editprofile">
           <div className="toProfileEdit">회원정보수정</div>
@@ -40,11 +41,9 @@ export default function UserInfoForm() {
         <br />
         <div>
           <p>해결한 문제 수: {probNum}개</p>
-        </div>
-        <div>
           <p>내가 만든 문제 수: {probNum}개</p>
         </div>
       </UserInfoDiv>
-    </Div>
+    </Container>
   );
 }
