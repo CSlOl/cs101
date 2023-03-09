@@ -6,12 +6,9 @@ import { useState } from "react";
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  margin-left: 20px;
-  padding: 20px;
-  width: 25%;
-  height: 85vh;
-  min-width: 250px;
+  justify-content: space-evenly;
+  width: 100%;
+  height: 100%;
   background-color: rgba(255, 255, 255, 0.2);
   border-radius: 10px;
   color: white;
