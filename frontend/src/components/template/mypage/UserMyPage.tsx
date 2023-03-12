@@ -1,4 +1,4 @@
-import UserCreatedQuizForm from "@/components/organisms/mypage/\bUserCreatedQuizForm";
+import UserCreatedQuizForm from "@/components/organisms/mypage/UserCreatedQuizForm";
 import PersonalQuizForm from "@/components/organisms/mypage/PersonalQuizForm";
 import UserInfoForm from "@/components/organisms/mypage/UserInfoForm";
 import styled from "@emotion/styled";
