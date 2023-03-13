@@ -26,6 +26,7 @@ const Move = styled.div`
   display: flex;
   font-family: "Press Start 2P";
   margin-right: 20px;
+  color: white;
 `;
 
 export default function Header() {
