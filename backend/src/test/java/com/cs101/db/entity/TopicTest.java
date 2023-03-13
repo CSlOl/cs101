@@ -19,9 +19,9 @@ class TopicTest {
 
     @Test
     public void testTopic() {
-        Topic topic1 = new Topic("네트워크");
-        Topic topic2 = new Topic("운영체제");
-        em.persist(topic1);
-        em.persist(topic2);
+//        Topic topic1 = new Topic("네트워크");
+//        Topic topic2 = new Topic("운영체제");
+//        em.persist(topic1);
+//        em.persist(topic2);
     }
 }

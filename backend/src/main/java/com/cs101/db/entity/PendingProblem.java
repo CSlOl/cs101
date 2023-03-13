@@ -25,7 +25,6 @@ public class PendingProblem {
     private String option4;
     private String answer;
     private String description;
-    private Boolean isWithdrawn;
     private LocalDateTime registeredDate;
 
     @Enumerated(EnumType.STRING)

@@ -3,6 +3,7 @@ package com.cs101.db.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Getter
@@ -14,20 +15,12 @@ public class Daily {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "daily_id")
     private Long id;
+    private LocalDate date;
+    private Long dailyProblemId1;
+    private Long dailyProblemId2;
+    private Long dailyProblemId3;
 
     @ManyToOne
     @JoinColumn(name = "knowledge_id")
     private Knowledge dailyKnowledge;
-
-//    @ManyToOne
-//    @JoinColumn(name = "problem_id")
-//    private Problem dailyProblem1;
-//
-//    @ManyToOne
-//    @JoinColumn(name = "problem_id")
-//    private Problem dailyProblem2;
-//
-//    @ManyToOne
-//    @JoinColumn(name = "problem_id")
-//    private Problem dailyProblem3;
 }
