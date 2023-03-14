@@ -5,8 +5,8 @@ interface Props {
 }
 
 const Button = styled.button`
+  margin-top: 10px;
   font-family: "DungGeunMo";
-  width: 95%;
   height: 50px;
   background-color: #26bba0;
   font-size: 2em;
@@ -19,6 +19,11 @@ const Button = styled.button`
   }
 `;
 
+/**
+ * [제출하기] 등 화면 하단 긴 버튼
+ * @param props
+ * @returns
+ */
 export default function LargeButton(props: Props) {
   return <Button>{props.label}</Button>;
 }
