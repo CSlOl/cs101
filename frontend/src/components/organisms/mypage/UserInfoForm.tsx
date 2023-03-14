@@ -13,29 +13,37 @@ const Container = styled.div`
   background-color: rgba(255, 255, 255, 0.2);
   border-radius: 10px;
   color: white;
+  min-height: 400px;
 
-  @media (max-width: 768px) {
+  @media (max-width: 992px) {
     flex-direction: row;
     height: 50%;
+    min-height: 250px;
   }
 `;
 
 const UserInfoDiv = styled.div`
-  positon: relative;
+  display: relative;
   text-align: center;
   color: white;
   font: 10px;
 
   .toProfileEdit {
     text-decoration: underline;
+    font-size: 0.9em;
+  }
+
+  p {
+    font-size: 0.9em;
   }
 `;
 
 const ProfileInfoDiv = styled.div`
   text-align: center;
   color: white;
-  margin-top: 25px;
-  @media (max-width: 768px) {
+  margin-bottom: 70px;
+
+  @media (max-width: 992px) {
     margin-top: 0px;
     margin-bottom: 2.5em;
   }
@@ -65,7 +73,6 @@ export default function UserInfoForm() {
         <Link href="/editprofile">
           <div className="toProfileEdit">회원정보수정</div>
         </Link>
-        <br />
         <div>
           <p>해결한 문제 수: {probNum}개</p>
           <p>내가 만든 문제 수: {probNum}개</p>

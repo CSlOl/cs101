@@ -3,8 +3,15 @@ import { useState } from "react";
 import SmallTag from "../atoms/tags/SmallTag";
 
 const Container = styled.div`
+  display: relative;
   margin: 5px;
   width: 95%;
+
+  @media (max-width: 992px) {
+    width: 97%;
+    min-width: 500px;
+    margin-left: 10px;
+  }
 
   .quizList {
     display: flex;
@@ -28,10 +35,18 @@ const Container = styled.div`
 
   .quizTitle {
     display: block;
-    width: 200px;
+    width: 220px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis; // 말줄임
+
+    @media (max-width: 1200px) {
+      width: 180px;
+    }
+
+    @media (max-width: 992px) {
+      width: 900px;
+    }
   }
 
   .viewAll {

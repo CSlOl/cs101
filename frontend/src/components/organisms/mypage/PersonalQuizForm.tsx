@@ -3,11 +3,14 @@ import styled from "@emotion/styled";
 import { useState } from "react";
 
 const Container = styled.div`
-  height: 55%;
+  height: 60%;
+  display: flex;
+  flex-direction: column;
   border-radius: 10px;
   background-color: rgba(255, 255, 255, 0.2);
   padding: 15px;
   font-family: "DungGeunMo";
+  margin-bottom: 10px;
 
   .personalQuizHeader {
     font-size: 1.5em;
@@ -25,6 +28,10 @@ const Container = styled.div`
     display: flex;
     justify-content: space-between;
     height: 100%;
+
+    @media (max-width: 992px) {
+      flex-direction: column;
+    }
   }
 `;
 
