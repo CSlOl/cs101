@@ -6,6 +6,8 @@ const Card = styled.div`
   margin: 8px 8px 0 0;
   width: 100%;
   height: 90%;
+  margin-bottom: 10px;
+  min-width: 215px;
 
   .cardHeader {
     display: flex;
@@ -22,12 +24,17 @@ const Card = styled.div`
     font-size: 0.9em;
     width: 45%;
     height: 25px;
+
+    @media (max-width: 992px) {
+      width: 20%;
+      font-size: 1em;
+    }
   }
 
   .cardList {
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 7px 0 7px 7px;
-    height: 90%;
+    height: 97%;
   }
 
   .cardListItem {
