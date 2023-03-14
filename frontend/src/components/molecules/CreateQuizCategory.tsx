@@ -21,6 +21,9 @@ const Text2 = styled.div`
   width: 120px;
 `;
 
+/**
+ * 유형 / 분류 선택하는 드롭다운 포함
+ */
 export default function CreateQuizCategory() {
   const types = [
     { value: "multiple", name: "객관식" },

@@ -4,8 +4,9 @@ import { atom, useRecoilState, useRecoilValue } from "recoil";
 import typeState from "../../../recoil/type";
 import categoryState from "@/recoil/category";
 import CreateMultiple from "@/components/organisms/createquiz/CreateMultiple";
-import CreateShortAnswer from "@/components/organisms/createquiz/CreateShortanswer";
+import CreateShortAnswer from "@/components/organisms/createquiz/CreateShortAnswer";
 import CreateEssay from "@/components/organisms/createquiz/CreateEssay";
+import LargeButton from "@/components/atoms/buttons/LargeButton";
 
 const Div = styled.div`
   color: white;
@@ -14,6 +15,7 @@ const Div = styled.div`
   justify-content: space-between;
   margin-left: 20px;
   margin-right: 20px;
+  margin-bottom: 20px;
 `;
 
 export default function CreateQuizBody() {
@@ -30,6 +32,7 @@ export default function CreateQuizBody() {
       ) : (
         <CreateEssay />
       )}
+      <LargeButton label="승인 요청하기" />
     </Div>
   );
 }
