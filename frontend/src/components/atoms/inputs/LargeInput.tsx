@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 const Textarea = styled.textarea`
   border-radius: 10px;
   width: 100%;
-  height: 350px;
+  height: 40vh;
   background-color: #413e4780;
   font-family: "Pretendard";
   font-size: 0.8em;
