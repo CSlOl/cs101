@@ -9,6 +9,10 @@ const Container = styled.div`
   align-items: center;
   flex-direction: column;
 
+  @media (max-width: 768px) {
+    flex-direction: row;
+  }
+
   .input {
     display: none;
   }
@@ -29,28 +33,12 @@ const Container = styled.div`
   }
 `;
 
-const ProfileInfoDiv = styled.div`
-  text-align: center;
-  color: white;
-  margin-top: 25px;
-
-  .nickName {
-    font-size: 30px;
-  }
-
-  .email {
-    font-size: 14px;
-  }
-`;
-
 const ProfileImageDiv = styled.div``;
 
 export default function ProfileImage() {
   const fileInputRef = useRef<HTMLInputElement>();
   const [image, setImage] = useState<File>();
   const [preview, setPreview] = useState<string>();
-  const [nickName, setNickName] = useState<string>("zl존규민");
-  const [email, setEmail] = useState<string>("gyumin.q.lee@gmail.com");
 
   useEffect(() => {
     if (image) {
@@ -98,10 +86,6 @@ export default function ProfileImage() {
           />
         </form>
       </ProfileImageDiv>
-      <ProfileInfoDiv>
-        <div className="nickName">{nickName}</div>
-        <div className="email">{email}</div>
-      </ProfileInfoDiv>
     </Container>
   );
 }
