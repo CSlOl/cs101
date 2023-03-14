@@ -1,22 +1,34 @@
+import typeState from "@/recoil/type";
+import categoryState from "@/recoil/category";
 import styled from "@emotion/styled";
+import { useRecoilState } from "recoil";
 import Dropdown from "../atoms/etc/Dropdown";
 
 const Container = styled.div`
   font-family: "DungGeunMo";
-  font-size: 2rem;
+  font-size: 1.5em;
   display: flex;
-  margin-left: 20px;
-  margin-right: 20px;
+  align-items: center;
+  margin-bottom: 5px;
+  white-space: nowrap;
 `;
 
-const Text = styled.div`
-  margin-right: 20px;
+const Text1 = styled.div`
+  width: 75px;
 `;
 
+const Text2 = styled.div`
+  width: 120px;
+`;
+
+/**
+ * 유형 / 분류 선택하는 드롭다운 포함
+ */
 export default function CreateQuizCategory() {
   const types = [
-    { value: "객관식", name: "객관식" },
-    { value: "주관식", name: "주관식" },
+    { value: "multiple", name: "객관식" },
+    { value: "short-answer", name: "주관식" },
+    { value: "essay", name: "서술형" },
   ];
   const categories = [
     { value: "네트워크", name: "네트워크" },
@@ -26,12 +38,22 @@ export default function CreateQuizCategory() {
     { value: "앱", name: "앱" },
   ];
 
+  const [type, setType] = useRecoilState(typeState);
+  const handleType = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setType(e.target.value);
+  };
+
+  const [category, setCategory] = useRecoilState(categoryState);
+  const handleCategory = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setCategory(e.target.value);
+  };
+
   return (
     <Container>
-      <Text>유형</Text>
-      <Dropdown options={types}></Dropdown>
-      <Text>객관식</Text>
-      <Dropdown options={categories}></Dropdown>
+      <Text1>유형</Text1>
+      <Dropdown options={types} func={handleType}></Dropdown>
+      <Text2>문제 분류</Text2>
+      <Dropdown options={categories} func={handleCategory}></Dropdown>
     </Container>
   );
 }
