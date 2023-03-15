@@ -1,3 +1,7 @@
+import styled from "@emotion/styled";
+import { useRef } from "react";
+import Image from "next/image";
+
 export default function TodaysCS() {
-  return <div>메인 - 바디1 오늘의 CS지식</div>;
+  return <></>;
 }
