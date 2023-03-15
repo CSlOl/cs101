@@ -1,30 +1,35 @@
 import styled from "@emotion/styled";
 import Image from "next/image";
+import TodaysQuizCard from "../../molecules/TodaysQuizCard";
 
 const Container = styled.div`
-  height: 100%;
-`;
-
-const Text = styled.div`
-  margin-bottom: 10px;
-`;
-
-const Arrow = styled.div`
-  position: absolute;
-  bottom: 4%;
-  left: 50%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  text-align: center;
 `;
+
+const Cards = styled.div`
+  display: flex;
+`;
+
+const Text = styled.div``;
+
+const Arrow = styled.div`
+  margin-top: 85vh;
+`;
+
 export default function TodaysQuiz() {
   return (
     <Container>
-      <Image src="/main_arrow.png" alt="main_arrow" width={70} height={30} />
-
-      {/* <Arrow>
-        <Text>오늘의 추천문제</Text>
-      </Arrow> */}
+      <Text>오늘의 추천문제</Text>
+      <Cards>
+        <TodaysQuizCard question="Stack이 무엇인지 알아보자" />
+        <TodaysQuizCard question="Stack이 무엇인지 알아보자" />
+        <TodaysQuizCard question="Stack이 무엇인지 알아보자" />
+      </Cards>
+      <Arrow>
+        <Image src="/main_arrow.png" alt="main_arrow" width={70} height={30} />
+      </Arrow>
     </Container>
   );
 }
