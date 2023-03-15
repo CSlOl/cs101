@@ -8,6 +8,7 @@ const Button = styled.button`
   margin-top: 10px;
   font-family: "DungGeunMo";
   height: 50px;
+  width: 100%;
   background-color: #26bba0;
   font-size: 2em;
   border-radius: 10px;
