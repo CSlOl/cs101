@@ -1,5 +1,10 @@
 import styled from "@emotion/styled";
 
+interface Props {
+  type: string;
+  category: string;
+}
+
 const Tag = styled.button`
   width: 70px;
   height: 18px;
@@ -12,7 +17,7 @@ const Tag = styled.button`
 `;
 
 // 문제 리스트에 함께 표시되는 작은 태그
-export default function SmallTag(props: any) {
+export default function SmallTag(props: Props) {
   return (
     <div>
       {props.type ? <Tag>{props.type}</Tag> : <Tag>{props.category}</Tag>}
