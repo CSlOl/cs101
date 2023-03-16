@@ -1,18 +1,23 @@
-import ExtraSmallButton from "@/components/atoms/buttons/ExtraSmallButton";
-import FavoriteButton from "@/components/atoms/buttons/FavoriteButton";
-import LargeButton from "@/components/atoms/buttons/LargeButton";
-import SmallButton from "@/components/atoms/buttons/SmallButton";
+import QuizItemBody from "@/components/template/quizitem/QuizItemBody";
+import SubHeader from "@/components/template/quizitem/SubHeader";
 import Header from "../components/Header";
+import styled from "@emotion/styled";
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
 export default function QuizItem() {
   return (
     <div>
       <Header />
-      <div>개별 문제 조회</div>
-      <LargeButton />
-      <SmallButton />
-      <ExtraSmallButton />
-      <FavoriteButton />
+      {/* 개별 문제 조회 */}
+      <Container>
+        <SubHeader />
+        <QuizItemBody />
+      </Container>
     </div>
   );
 }

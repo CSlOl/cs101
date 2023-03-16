@@ -1,20 +1,25 @@
 import styled from "@emotion/styled";
 
+interface Props {
+  label: string;
+}
+
 const Tag = styled.button`
-  width: 200px;
-  height: 50px;
+  width: 130px;
+  height: 35px;
   background-color: #26bba0;
-  font-size: 1.8em;
-  border-radius: 10px;
+  font-size: 1.3em;
+  border-radius: 8px;
   border: none;
   color: white;
+  margin-right: 5px;
 `;
 
 // 개별 문제 내 문제 설명해주는 태그 (이미 푼 문제 / 자료구조 / 객관식 등)
-export default function LargeTag() {
+export default function LargeTag(props: Props) {
   return (
     <div>
-      <Tag>😎이미 푼 문제</Tag>
+      <Tag>{props.label}</Tag>
     </div>
   );
 }
