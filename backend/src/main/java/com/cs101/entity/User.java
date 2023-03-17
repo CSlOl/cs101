@@ -1,4 +1,4 @@
-package com.cs101.db.entity;
+package com.cs101.entity;
 
 import lombok.*;
 

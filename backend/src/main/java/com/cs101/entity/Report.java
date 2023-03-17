@@ -1,4 +1,4 @@
-package com.cs101.db.entity;
+package com.cs101.entity;
 
 import lombok.*;
 
@@ -10,21 +10,19 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class UserProblem {
+public class Report {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_problem_id")
+    @Column(name = "report_id")
     private Long id;
-    private LocalDateTime solvedDate;
+    private String title;
+    private String content;
+    private LocalDateTime registeredDate;
 
     @Enumerated(EnumType.STRING)
-    private UserProblemStatus userProblemStatus;
+    private ReportStatus reportStatus;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
-
-    @ManyToOne
-    @JoinColumn(name = "problem_id")
-    private Problem problem;
 }
