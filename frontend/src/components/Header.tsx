@@ -24,9 +24,13 @@ const Title = styled.p`
 
 const Move = styled.div`
   display: flex;
-  font-family: "Press Start 2P";
   margin-right: 20px;
   color: white;
+`;
+
+const Text = styled.div`
+  font-family: "Press Start 2P";
+  font-size: 1em;
 `;
 
 export default function Header() {
@@ -46,11 +50,11 @@ export default function Header() {
 
       <Move>
         <Link href="/login">
-          <div>login</div>
+          <Text>login</Text>
         </Link>
-        <p>&nbsp;|&nbsp;</p>
+        <p>&nbsp;&nbsp;|&nbsp;&nbsp;</p>
         <Link href="/signup">
-          <div>signup</div>
+          <Text>signup</Text>
         </Link>
       </Move>
     </Div>
