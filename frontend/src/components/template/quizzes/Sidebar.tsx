@@ -1,27 +1,18 @@
-import NumberTag from "@/components/atoms/tags/NumberTag";
+import SidebarForm from "@/components/organisms/SidebarForm";
 import styled from "@emotion/styled";
 
 const Container = styled.div`
   display: flex;
-`;
+  flex-direction: column;
 
-const CategoryDiv = styled.div`
-  display: flex;
-`;
-
-const TypeDiv = styled.div`
-  display: flex;
+  margin: 0.5em 0 0 1em;
 `;
 
 export default function Sidebar() {
   return (
     <Container>
-      <CategoryDiv>
-        <NumberTag />
-      </CategoryDiv>
-      <TypeDiv>
-        <NumberTag />
-      </TypeDiv>
+      <SidebarForm title="Category" />
+      <SidebarForm title="Type" />
     </Container>
   );
 }

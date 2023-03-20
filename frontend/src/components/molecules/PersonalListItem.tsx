@@ -70,8 +70,8 @@ export default function PersonalListItem() {
   const titleList: JSX.Element[] = titles.map((title) => (
     <div className="quizList">
       <li className="quizTag">
-        <SmallTag category={quizCategory} />
-        <SmallTag type={quizType} />
+        <SmallTag category={quizCategory} type="" />
+        <SmallTag type={quizType} category="" />
       </li>
       <li className="quizTitle">{title}</li>
     </div>
