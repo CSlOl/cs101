@@ -17,6 +17,7 @@ const Container = styled.div`
     width: 20vw;
     min-width: 250px;
     background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
   }
 
   .buffer {
@@ -26,6 +27,7 @@ const Container = styled.div`
     width: 75vw;
     display: flex;
     background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
   }
 `;
 // 문제 리스트
