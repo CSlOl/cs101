@@ -1,3 +1,27 @@
+import NumberTag from "@/components/atoms/tags/NumberTag";
+import styled from "@emotion/styled";
+
+const Container = styled.div`
+  display: flex;
+`;
+
+const CategoryDiv = styled.div`
+  display: flex;
+`;
+
+const TypeDiv = styled.div`
+  display: flex;
+`;
+
 export default function Sidebar() {
-  return <div>문제 목록 사이드바</div>;
+  return (
+    <Container>
+      <CategoryDiv>
+        <NumberTag />
+      </CategoryDiv>
+      <TypeDiv>
+        <NumberTag />
+      </TypeDiv>
+    </Container>
+  );
 }
