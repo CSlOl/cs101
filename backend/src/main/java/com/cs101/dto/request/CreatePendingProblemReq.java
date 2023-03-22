@@ -8,6 +8,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CreatePendingProblemReq {
+    private String title;
+    private String category;
+    private String type;
     private String question;
     private String[] options;
     private String answer;
