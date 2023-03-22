@@ -5,6 +5,7 @@ import lombok.Getter;
 
 @Getter
 @Builder
-public class PendingProblemDetailGetRes {
-    private PendingProblemDetailRes problem;
+public class ProblemListInfoRes {
+    private Object types;
+    private Object categories;
 }
