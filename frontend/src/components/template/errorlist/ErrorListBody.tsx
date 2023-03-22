@@ -11,8 +11,9 @@ const Container = styled.div`
 
   h1 {
     font-family: "DungGeunMo";
-    font-size: 2em;
+    font-size: 1.8em;
     color: #26bba0;
+    margin-bottom: 0.5em;
   }
 `;
 
@@ -102,6 +103,7 @@ export default function ErrorListBody() {
 
   return (
     <Container>
+      <h1>제보된 오류 확인</h1>
       <ErrorListTitle />
       <ListDiv>{quizList}</ListDiv>
     </Container>
