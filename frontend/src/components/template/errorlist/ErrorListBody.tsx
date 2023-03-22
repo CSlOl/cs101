@@ -7,6 +7,7 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: space-between;
   margin: 20px 20px 20px 20px;
+  min-width: 900px;
 
   h1 {
     font-family: "DungGeunMo";
