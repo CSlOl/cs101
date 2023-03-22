@@ -24,6 +24,13 @@ public class PendingProblemController {
                 .body(new ApiResponse(200, "문제 등록 성공", null));
     }
 
+    @GetMapping
+    public ResponseEntity<ApiResponse> getPendingProblemList() throws IOException {
+        return ResponseEntity
+                .ok()
+                .body(new ApiResponse(200, "등록 대기 문제 목록 조회 성공", pendingProblemService.getPendingProblemList()));
+    }
+
     @GetMapping("/{problemId}")
     public ResponseEntity<ApiResponse> getPendingProblemDetail(@PathVariable Long problemId){
         return ResponseEntity

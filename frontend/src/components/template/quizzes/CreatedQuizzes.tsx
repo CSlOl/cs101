@@ -1,3 +1,9 @@
+import styled from "@emotion/styled";
+
+const Container = styled.div`
+  display: flex;
+`;
+
 export default function CreatedQuizzes() {
-  return <div>등록 문제 리스트</div>;
+  return <Container>등록 문제 리스트</Container>;
 }

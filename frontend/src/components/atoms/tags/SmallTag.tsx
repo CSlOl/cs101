@@ -9,8 +9,8 @@ const Tag = styled.button`
   width: 70px;
   height: 18px;
   background-color: #26bba0;
-  font-size: 0.8em;
-  border-radius: 10px;
+  font-size: 0.6em;
+  border-radius: 5px;
   border: none;
   color: white;
   margin-right: 5px;
