@@ -1,4 +1,4 @@
-package com.cs101.db.entity;
+package com.cs101.entity;
 
 import lombok.*;
 
@@ -12,12 +12,14 @@ import java.util.List;
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
+@Builder
 @ToString(of = {"id", "question", "option1", "option2", "option3", "option4", "answer", "description", "registeredDate"})
 public class PendingProblem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "pending_problem_id")
     private Long id;
+    private String title;
     private String question;
     private String option1;
     private String option2;
@@ -32,7 +34,7 @@ public class PendingProblem {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "topic_id")
-    private Topic topic;
+    private Type type;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
@@ -42,9 +44,9 @@ public class PendingProblem {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "problem", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "problem", cascade = {CascadeType.ALL})
     private List<UserProblem> userProblems = new ArrayList<>();
 
-    @OneToMany(mappedBy = "problem", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "problem", cascade = {CascadeType.ALL})
     private List<Favorites> favoritesList = new ArrayList<>();
 }

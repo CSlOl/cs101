@@ -1,4 +1,4 @@
-package com.cs101.db.entity;
+package com.cs101.entity;
 
 public enum UserProblemStatus {
     CORRECT, INCORRECT, UNSOLVED

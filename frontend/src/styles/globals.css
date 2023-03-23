@@ -74,6 +74,7 @@
 }
 
 * {
+  font-family: "Pretendard";
   box-sizing: border-box;
   padding: 0;
   margin: 0;
@@ -86,7 +87,6 @@ body {
 }
 
 body {
-  font-family: "Pretendard";
   color: rgb(var(--foreground-rgb));
   background: #050623;
 }

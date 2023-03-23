@@ -1,4 +1,4 @@
-package com.cs101.db.entity;
+package com.cs101.entity;
 
 import lombok.*;
 
@@ -9,11 +9,11 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-@ToString(of = {"id", "content"})
-public class Knowledge {
+@ToString(of = {"id", "name"})
+public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "knowledge_id")
+    @Column(name = "category_id")
     private Long id;
-    private String content;
+    private String name;
 }
