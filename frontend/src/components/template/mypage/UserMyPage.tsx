@@ -2,7 +2,6 @@ import UserCreatedQuizForm from "@/components/organisms/mypage/UserCreatedQuizFo
 import PersonalQuizForm from "@/components/organisms/mypage/PersonalQuizForm";
 import UserInfoForm from "@/components/organisms/mypage/UserInfoForm";
 import styled from "@emotion/styled";
-import { css } from "@emotion/react";
 
 const Container = styled.div`
   display: flex;
@@ -43,6 +42,7 @@ const QuizContainer = styled.div`
   min-width: 450px;
   min-height: 250px;
   margin-left: 10px;
+  height: 105%;
 
   @media (max-width: 992px) {
     justify-content: center;

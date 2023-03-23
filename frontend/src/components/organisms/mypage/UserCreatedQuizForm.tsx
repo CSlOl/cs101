@@ -1,12 +1,12 @@
 import RegisterQuizCard from "@/components/molecules/RegisterQuizCard";
 import styled from "@emotion/styled";
+import { useState } from "react";
 
 const Container = styled.div`
   height: 40%;
   border-radius: 10px;
   background-color: rgba(255, 255, 255, 0.2);
   padding: 15px;
-  font-family: "DungGeunMo";
 
   .userCreatedQuizHeader {
     display: flex;
@@ -21,9 +21,15 @@ const Container = styled.div`
     color: white;
     font-size: 0.5em;
   }
+
+  p {
+    font-family: "DungGeunMo";
+  }
 `;
 
 export default function UserCreatedQuizForm() {
+  const [height, setHeight] = useState<string>("40%");
+
   return (
     <Container>
       <div className="userCreatedQuizHeader">

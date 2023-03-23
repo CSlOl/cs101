@@ -18,7 +18,7 @@ const Container = styled.div`
     border-radius: 5px;
   }
 
-  .quizTag,
+  .quizDate,
   .quizTitle,
   .quizAuth {
     display: flex;
@@ -30,9 +30,8 @@ const Container = styled.div`
   }
 `;
 
-export default function RegisterListItem() {
-  const [quizCategory, setQuizCategory] = useState<string>("자료구조");
-  const [quizType, setQuizType] = useState<string>("객관식");
+export default function AdminErrorListItem() {
+  const [date, setDate] = useState<string>("2023-04-12(수)");
   const [authRequestStatus, setAuthRequestStatus] =
     useState<string>("승인대기중");
 
@@ -43,10 +42,7 @@ export default function RegisterListItem() {
 
   const titleList: JSX.Element[] = titles.map((title) => (
     <div className="quizList">
-      <li className="quizTag">
-        <MediumTag category={quizCategory} />
-        <MediumTag type={quizType} />
-      </li>
+      <li className="quizDate">{date}</li>
       <li className="quizTitle">{title}</li>
       <li className="quizAuth">{authRequestStatus}</li>
     </div>

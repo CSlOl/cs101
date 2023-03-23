@@ -9,7 +9,7 @@ const Container = styled.div`
   justify-content: space-evenly;
   align-items: center;
   width: 100%;
-  height: 100%;
+  height: 105%;
   background-color: rgba(255, 255, 255, 0.2);
   border-radius: 10px;
   color: white;
@@ -21,7 +21,6 @@ const Container = styled.div`
     min-height: 250px;
   }
 `;
-
 const UserInfoDiv = styled.div`
   display: relative;
   text-align: center;
