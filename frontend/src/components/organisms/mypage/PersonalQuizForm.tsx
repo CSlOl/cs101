@@ -9,7 +9,6 @@ const Container = styled.div`
   border-radius: 10px;
   background-color: rgba(255, 255, 255, 0.2);
   padding: 15px;
-  font-family: "DungGeunMo";
   margin-bottom: 10px;
 
   .personalQuizHeader {
@@ -22,6 +21,10 @@ const Container = styled.div`
   a {
     color: white;
     font-size: 0.5em;
+  }
+
+  p {
+    font-family: "DungGeunMo";
   }
 
   .cards {
