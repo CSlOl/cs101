@@ -2,7 +2,7 @@ package com.cs101.api.service;
 
 import com.cs101.api.repository.UserRepository;
 import com.cs101.dto.request.RegisterUserReq;
-import com.cs101.dto.response.user.UserLoginInfoRes;
+import com.cs101.dto.response.auth.UserLoginInfoRes;
 import com.cs101.entity.User;
 import com.cs101.entity.UserStatus;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 
 @Service
 @RequiredArgsConstructor
-public class UserService {
+public class AuthService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;

@@ -1,6 +1,6 @@
 package com.cs101.api.controller;
 
-import com.cs101.api.service.UserService;
+import com.cs101.api.service.AuthService;
 import com.cs101.dto.request.LoginReq;
 import com.cs101.dto.request.RegisterUserReq;
 import com.cs101.dto.response.ApiResponse;
@@ -22,16 +22,16 @@ import java.util.NoSuchElementException;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/user")
-public class UserController {
+@RequestMapping("/auth")
+public class AuthController {
 
-    private final UserService userService;
+    private final AuthService authService;
     private final JwtUtil jwtUtil;
     private final CookieUtil cookieUtil;
 
     @PostMapping("/signup")
     public ResponseEntity<ApiResponse> registerUser(@RequestBody RegisterUserReq registerUserReq) throws IOException {
-        userService.registerUser(registerUserReq);
+        authService.registerUser(registerUserReq);
         return ResponseEntity
                 .ok()
                 .body(new ApiResponse(201, "회원 가입 성공", null));
@@ -42,7 +42,7 @@ public class UserController {
         try {
             String email = loginReq.getEmail();
             String password = loginReq.getPassword();
-            User user = userService.getUserByUserEmail(email);
+            User user = authService.getUserByUserEmail(email);
 
             if (user.getUserStatus() == UserStatus.WITHDRAWN) {
                 return ResponseEntity
@@ -50,7 +50,7 @@ public class UserController {
                         .body(new ApiResponse(403, "탈퇴한 회원입니다.", null));
             }
 
-            if (userService.checkPassword(password, user.getPassword())) {
+            if (authService.checkPassword(password, user.getPassword())) {
                 Map<String, String> userInfo = new HashMap<>();
                 userInfo.put("id", user.getId() + "");
 
@@ -64,7 +64,7 @@ public class UserController {
 
                 return ResponseEntity
                         .ok()
-                        .body(new ApiResponse(200, "로그인 성공", userService.getUserLoginInfo(user.getId(), accessToken, user.isAdmin())));
+                        .body(new ApiResponse(200, "로그인 성공", authService.getUserLoginInfo(user.getId(), accessToken, user.isAdmin())));
             }
 
             return ResponseEntity
