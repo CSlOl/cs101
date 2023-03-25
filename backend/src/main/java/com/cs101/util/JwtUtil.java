@@ -14,8 +14,8 @@ import java.util.Map;
 
 @Component
 public class JwtUtil {
-//    @Value("${salt}")
-    private String SALT = "1234";
+    @Value("${salt}")
+    private String SALT;
 
     public <T> String createAccessToken(String key, T data, String subject) {
         Date now = new Date();
