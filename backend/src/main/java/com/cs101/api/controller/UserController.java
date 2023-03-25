@@ -10,12 +10,10 @@ import com.cs101.util.CookieUtil;
 import com.cs101.util.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
@@ -77,6 +75,38 @@ public class UserController {
                     .ok()
                     .body(new ApiResponse<>(404, "존재하지 않는 계정입니다.", null));
         }
+    }
 
+    @GetMapping("/logout")
+    public ResponseEntity<ApiResponse> logout(HttpServletRequest request, HttpServletResponse response) {
+        String accessToken = null;
+        String refreshToken = null;
+        String bearer = request.getHeader("Authorization");
+        if (bearer != null && !"".equals(bearer)) {
+            accessToken = bearer.split(" ")[1];
+        }
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie c : cookies) {
+                if ("accessToken".equals(c.getName())) {
+                    accessToken = c.getValue();
+                } else if ("refreshToken".equals(c.getName())) {
+                    refreshToken = c.getValue();
+                }
+            }
+
+            Cookie accessCookie = new Cookie("accessToken", null);
+            accessCookie.setMaxAge(0);
+            accessCookie.setPath("/");
+            response.addCookie(accessCookie);
+
+            Cookie refreshCookie = new Cookie("refreshToken", null);
+            refreshCookie.setMaxAge(0);
+            refreshCookie.setPath("/");
+            response.addCookie(refreshCookie);
+        }
+        return ResponseEntity
+                .ok()
+                .body(new ApiResponse<>(200, "로그아웃 성공", null));
     }
 }
