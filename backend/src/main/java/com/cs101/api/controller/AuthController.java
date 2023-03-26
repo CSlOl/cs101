@@ -3,6 +3,7 @@ package com.cs101.api.controller;
 import com.cs101.api.service.AuthService;
 import com.cs101.dto.request.LoginReq;
 import com.cs101.dto.request.RegisterUserReq;
+import com.cs101.dto.request.RejoinUserReq;
 import com.cs101.dto.response.ApiResponse;
 import com.cs101.entity.User;
 import com.cs101.entity.UserStatus;
@@ -108,5 +109,13 @@ public class AuthController {
         return ResponseEntity
                 .ok()
                 .body(new ApiResponse<>(200, "로그아웃 성공", null));
+    }
+
+    @PutMapping("/rejoin")
+    public ResponseEntity<ApiResponse> rejoin(@RequestBody RejoinUserReq rejoinUserReq) throws IOException {
+        authService.rejoinUser(rejoinUserReq);
+        return ResponseEntity
+                .ok()
+                .body(new ApiResponse(201, "회원 재가입 성공", null));
     }
 }

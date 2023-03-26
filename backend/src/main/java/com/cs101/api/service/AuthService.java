@@ -2,6 +2,7 @@ package com.cs101.api.service;
 
 import com.cs101.api.repository.UserRepository;
 import com.cs101.dto.request.RegisterUserReq;
+import com.cs101.dto.request.RejoinUserReq;
 import com.cs101.dto.response.auth.UserLoginInfoRes;
 import com.cs101.entity.User;
 import com.cs101.entity.UserStatus;
@@ -52,5 +53,10 @@ public class AuthService {
                 .build();
 
         return userLoginInfoRes;
+    }
+
+    public void rejoinUser(RejoinUserReq rejoinUserReq) {
+        User user = userRepository.findByEmail(rejoinUserReq.getEmail()).orElse(null);
+        user.setUserStatus(UserStatus.ACTIVATED);
     }
 }
