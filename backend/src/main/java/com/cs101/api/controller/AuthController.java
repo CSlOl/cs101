@@ -79,7 +79,7 @@ public class AuthController {
     }
 
     @GetMapping("/logout")
-    public ResponseEntity<ApiResponse> logout(HttpServletRequest request, HttpServletResponse response) {
+    public ResponseEntity<ApiResponse> logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String accessToken = null;
         String refreshToken = null;
         String bearer = request.getHeader("Authorization");
