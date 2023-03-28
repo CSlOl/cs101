@@ -7,7 +7,7 @@ interface Props {
 const NumTag = styled.button`
   width: 3em;
   height: 20px;
-  background-color: #00000;
+  background-color: rgba(255, 255, 255, 0.2);
   font-size: 0.7em;
   border-radius: 20px;
   border: none;
