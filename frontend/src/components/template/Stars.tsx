@@ -1,8 +1,15 @@
 import Image from "next/image";
+import styled from "@emotion/styled";
+
+const Div = styled.div`
+  position: absolute;
+  height: 100vh;
+  left: 0;
+`;
 
 export default function Stars() {
   return (
-    <div>
+    <Div>
       <Image
         src="/bgstar_dim.png"
         alt="star"
@@ -73,6 +80,6 @@ export default function Stars() {
         height={15}
         style={{ position: "absolute", left: "85vw", top: "85vh" }}
       />
-    </div>
+    </Div>
   );
 }

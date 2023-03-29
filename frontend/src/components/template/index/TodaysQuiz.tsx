@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import Link from "next/link";
 import Image from "next/image";
 import TodaysQuizCard from "../../molecules/TodaysQuizCard";
 
@@ -6,30 +7,61 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   text-align: center;
+  height: 100%;
+  width: 95%;
+  padding-top: 12%;
+
+  .title {
+    font-size: 1.25em;
+  }
 `;
 
 const Cards = styled.div`
+  margin-top: 3%;
   display: flex;
-`;
-
-const Text = styled.div``;
-
-const Arrow = styled.div`
-  margin-top: 85vh;
+  justify-content: space-between;
 `;
 
 export default function TodaysQuiz() {
+  const questions = [
+    {
+      title: "stack에 대해서 알아보자.",
+      category: "자료구조",
+      type: "객관식",
+    },
+    {
+      title: "queue에 대해서 알아보자.",
+      category: "자료구조",
+      type: "객관식",
+    },
+    {
+      title: "Javascript와 Typescript의 차이는?",
+      category: "자료구조",
+      type: "객관식",
+    },
+  ];
+
+  const titles = [
+    "stack에 대해서 알아보자.",
+    "queue에 대해서 알아보자.",
+    "Javascript와 Typescript의 차이는?",
+  ];
+
   return (
     <Container>
-      <Text>오늘의 추천문제</Text>
+      <div className="title">오늘의 추천문제</div>
       <Cards>
-        <TodaysQuizCard question="Stack이 무엇인지 알아보자" />
-        <TodaysQuizCard question="Stack이 무엇인지 알아보자" />
-        <TodaysQuizCard question="Stack이 무엇인지 알아보자" />
+        {questions.map((question) => (
+          <Link href="/quizzes">
+            {/* 추후 해당 문제 링크로 이동 */}
+            <TodaysQuizCard
+              question={question.title}
+              category={question.category}
+              type={question.type}
+            ></TodaysQuizCard>
+          </Link>
+        ))}
       </Cards>
-      <Arrow>
-        <Image src="/main_arrow.png" alt="main_arrow" width={70} height={30} />
-      </Arrow>
     </Container>
   );
 }
