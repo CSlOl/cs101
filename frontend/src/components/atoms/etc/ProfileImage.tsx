@@ -47,9 +47,10 @@ export default function ProfileImage() {
         setPreview(reader.result as string);
       };
       reader.readAsDataURL(image);
-    } else {
-      setPreview(null);
     }
+    // } else {
+    //   setPreview(null);
+    // }
   }, [image]);
 
   return (
