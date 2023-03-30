@@ -36,27 +36,27 @@ const Container = styled.div`
 const ProfileImageDiv = styled.div``;
 
 export default function ProfileImage() {
-  const fileInputRef = useRef<HTMLInputElement>();
-  const [image, setImage] = useState<File>();
-  const [preview, setPreview] = useState<string>();
+  // const fileInputRef = useRef<HTMLInputElement>();
+  // const [image, setImage] = useState<File>();
+  // const [preview, setPreview] = useState<string>();
 
-  useEffect(() => {
-    if (image) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setPreview(reader.result as string);
-      };
-      reader.readAsDataURL(image);
-    }
-    // } else {
-    //   setPreview(null);
-    // }
-  }, [image]);
+  // useEffect(() => {
+  //   if (image) {
+  //     const reader = new FileReader();
+  //     reader.onloadend = () => {
+  //       setPreview(reader.result as string);
+  //     };
+  //     reader.readAsDataURL(image);
+  //   }
+  //   // } else {
+  //   //   setPreview(null);
+  //   // }
+  // }, [image]);
 
   return (
     <Container>
       <ProfileImageDiv>
-        <form>
+        {/* <form>
           {preview ? (
             <img className="image" src={preview} alt={"preview"} />
           ) : (
@@ -85,7 +85,7 @@ export default function ProfileImage() {
               }
             }}
           />
-        </form>
+        </form> */}
       </ProfileImageDiv>
     </Container>
   );
