@@ -21,11 +21,11 @@
 
          stage('Build') {
              steps {
-                 sh 'chmod +x backend/gradlew'
-                 sh  'backend/gradlew clean build'
+                 sh 'chmod +x gradlew'
+                 sh  './gradlew clean build'
 
 
-                 sh 'ls -al backend/build'
+                 sh 'ls -al ./build'
              }
              post {
                  success {
