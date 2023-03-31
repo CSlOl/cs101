@@ -21,11 +21,9 @@
 
          stage('Build') {
              steps {
-                 sh 'chmod +x gradlew'
-                 sh  './gradlew clean build'
-
-
-                 sh 'ls -al ./build'
+                 dir('.'){
+                    sh './gradlew clean build'
+                 }
              }
              post {
                  success {
@@ -64,8 +62,10 @@
 
          stage('Dockerizing'){
              steps{
-                 sh 'echo " Image Bulid Start"'
-                 sh 'docker buildx build —platform=linux/amd64 -t jjoon0306/cs101-be backend'
+                dir('.'){
+                    sh 'echo " Image Bulid Start"'
+                    sh 'docker buildx build —platform=linux/amd64 -t jjoon0306/cs101-be .'
+                 }
              }
              post {
                  success {
