@@ -16,11 +16,6 @@ import java.io.IOException;
 public class ProblemController {
     private final ProblemService problemService;
 
-    @GetMapping
-    public String sample() {
-        return "sample";
-    }
-
     @GetMapping("/listInfo")
     public ResponseEntity<ApiResponse> getProblemListInfo() throws IOException {
         return ResponseEntity
