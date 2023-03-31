@@ -33,7 +33,7 @@ public class PendingProblem {
     private PendingStatus pendingStatus;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "topic_id")
+    @JoinColumn(name = "type_id")
     private Type type;
 
     @ManyToOne(fetch = FetchType.LAZY)

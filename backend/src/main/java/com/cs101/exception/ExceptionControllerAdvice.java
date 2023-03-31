@@ -20,4 +20,14 @@ public class ExceptionControllerAdvice {
                 .internalServerError()
                 .body(new ErrorResponse(500, "No category by name : " + errMessage));
     }
+
+    @ExceptionHandler(NoTypeByNameException.class)
+    protected ResponseEntity<ErrorResponse> noTypeByNameException(NoTypeByNameException e) {
+        String errMessage = e.getMessage();
+        log.error("No type by name : " + errMessage);
+
+        return ResponseEntity
+                .internalServerError()
+                .body(new ErrorResponse(500, "No type by name : " + errMessage));
+    }
 }
