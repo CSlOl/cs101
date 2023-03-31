@@ -4,7 +4,7 @@ import PersonalListItem from "./PersonalListItem";
 
 interface Props {
   type: string;
-  count: string;
+  count: number;
 }
 
 const Card = styled.div`
