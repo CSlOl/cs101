@@ -2,6 +2,7 @@ package com.cs101.api.service;
 
 import com.cs101.api.repository.PendingProblemRepository;
 import com.cs101.api.repository.CategoryRepository;
+import com.cs101.api.repository.TypeRepository;
 import com.cs101.api.repository.UserRepository;
 import com.cs101.dto.request.CreatePendingProblemReq;
 import com.cs101.dto.response.problem.PendingProblemDetailRes;
@@ -10,6 +11,7 @@ import com.cs101.dto.response.problem.PendingProblemListItem;
 import com.cs101.dto.response.problem.PendingProblemListRes;
 import com.cs101.entity.*;
 import com.cs101.exception.NoCategoryByNameException;
+import com.cs101.exception.NoTypeByNameException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,11 +29,13 @@ public class PendingProblemService {
 
     private final PendingProblemRepository pendingProblemRepository;
     private final CategoryRepository categoryRepository;
+    private final TypeRepository typeRepository;
     private final UserRepository userRepository;
 
     public void createPendingProblem(CreatePendingProblemReq createPendingProblemReq, Long userId) throws IOException {
         User user = userRepository.findById(userId).orElse(null);
         Category category = categoryRepository.findByName(createPendingProblemReq.getCategory()).orElseThrow(() -> new NoCategoryByNameException(createPendingProblemReq.getCategory()));
+        Type type = typeRepository.findByName(createPendingProblemReq.getType()).orElseThrow(() -> new NoTypeByNameException(createPendingProblemReq.getType()));
 
         PendingProblem pendingProblem = PendingProblem.builder()
                 .title(createPendingProblemReq.getTitle())
@@ -42,6 +46,7 @@ public class PendingProblemService {
                 .option4(createPendingProblemReq.getOptions()[3])
                 .answer(createPendingProblemReq.getAnswer())
                 .description(createPendingProblemReq.getDescription())
+                .type(type)
                 .category(category)
                 .pendingStatus(PendingStatus.IN_PROGRESS)
                 .registeredDate(LocalDateTime.now())
@@ -74,11 +79,14 @@ public class PendingProblemService {
         PendingProblem pendingProblem = pendingProblemRepository.findById(pendingProblemId).orElse(null);
 
         PendingProblemDetail pendingProblemDetail = PendingProblemDetail.builder()
+                .title(pendingProblem.getTitle())
                 .question(pendingProblem.getQuestion())
                 .options(new String[] {pendingProblem.getOption1(), pendingProblem.getOption2(), pendingProblem.getOption3(), pendingProblem.getOption4()})
                 .answer(pendingProblem.getAnswer())
                 .description(pendingProblem.getDescription())
                 .registeredDate(pendingProblem.getRegisteredDate())
+                .type(pendingProblem.getType().getName())
+                .category(pendingProblem.getCategory().getName())
                 .authorId(pendingProblem.getUser().getId())
                 .authorName(pendingProblem.getUser().getName())
                 .build();
