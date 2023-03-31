@@ -23,7 +23,7 @@
              steps{
                 dir('backend'){
                     sh 'echo " Image Bulid Start"'
-                    sh 'docker buildx build —platform=linux/amd64 -t jjoon0306/cs101-be .'
+                    sh 'docker build -t jjoon0306/cs101-be .'
                  }
              }
              post {
