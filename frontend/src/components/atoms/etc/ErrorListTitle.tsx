@@ -6,7 +6,7 @@ const Div = styled.div`
   padding: 1em 2em 1em 2em;
   background-color: rgba(255, 255, 255, 0.2);
   border-radius: 5px;
-  min-width: 80vw;
+  min-width: 75vw;
 
   .date,
   .title,

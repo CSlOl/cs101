@@ -3,6 +3,7 @@ import Image from "next/image";
 import styled from "@emotion/styled";
 
 const Div = styled.div`
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -26,6 +27,10 @@ const Move = styled.div`
   display: flex;
   margin-right: 20px;
   color: white;
+
+  p {
+    cursor: default;
+  }
 `;
 
 const Text = styled.div`

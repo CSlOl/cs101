@@ -1,7 +1,7 @@
 import Image from "next/image";
+import Link from "next/link";
 import { atom, useRecoilState, useRecoilValue } from "recoil";
 import styled from "@emotion/styled";
-import nameState from "../recoil/store";
 import Header from "../components/Header";
 import { useRef } from "react";
 import TodaysCS from "@/components/template/index/TodaysCS";
@@ -18,6 +18,19 @@ const Arrow = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  cursor: pointer;
+`;
+
+const Arrow2 = styled.div`
+  position: absolute;
+  top: 198%;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 `;
 
 const Main1 = styled.div`
@@ -29,6 +42,9 @@ const Main1 = styled.div`
 `;
 
 const Main2 = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   height: 100vh;
   color: white;
 `;
@@ -52,7 +68,7 @@ export default function Home() {
       <Header />
       <Stars />
       <Main1>
-        <TodaysCS></TodaysCS>
+        <TodaysCS />
         <Arrow onClick={onMoveToElement}>
           <Text>오늘의 추천문제</Text>
           <Image
@@ -65,7 +81,22 @@ export default function Home() {
       </Main1>
 
       <Main2 ref={element}>
+        <Header />
+        <Stars />
         <TodaysQuiz />
+        <Arrow2>
+          <Link href="/quizzes">
+            <div>
+              <Text>문제목록 바로가기</Text>
+              <Image
+                src="/main_arrow.png"
+                alt="main_arrow"
+                width={70}
+                height={30}
+              />
+            </div>
+          </Link>
+        </Arrow2>
       </Main2>
     </Div>
   );
