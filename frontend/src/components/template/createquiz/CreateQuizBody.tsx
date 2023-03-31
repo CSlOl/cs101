@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled from "@emotion/styled";
 import CreateQuizCategory from "../../molecules/CreateQuizCategory";
-import { atom, useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import typeState from "../../../recoil/type";
 import categoryState from "@/recoil/category";
 import CreateMultiple from "@/components/organisms/createquiz/CreateMultiple";
@@ -26,7 +26,6 @@ const Div = styled.div`
  */
 export default function CreateQuizBody() {
   const [type, setType] = useRecoilState(typeState);
-  const [category, setCategory] = useRecoilState(categoryState);
 
   // 삭제 모달 관리
   const [showModal, setShowModal] = useState(false);

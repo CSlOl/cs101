@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import Link from "next/link";
-import Image from "next/image";
+import { useState } from "react";
 import TodaysQuizCard from "../../molecules/TodaysQuizCard";
 
 const Container = styled.div`
@@ -23,6 +23,7 @@ const Cards = styled.div`
 `;
 
 export default function TodaysQuiz() {
+  const [id, setId] = useState<number>(0);
   const questions = [
     {
       title: "stack에 대해서 알아보자.",
@@ -55,6 +56,7 @@ export default function TodaysQuiz() {
           <Link href="/quizzes">
             {/* 추후 해당 문제 링크로 이동 */}
             <TodaysQuizCard
+              key={id}
               question={question.title}
               category={question.category}
               type={question.type}

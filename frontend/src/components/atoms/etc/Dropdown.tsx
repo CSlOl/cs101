@@ -1,6 +1,4 @@
-import typeState from "@/recoil/type";
 import styled from "@emotion/styled";
-import { useRecoilState } from "recoil";
 
 interface Props {
   options: Option[];
