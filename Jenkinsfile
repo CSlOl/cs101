@@ -21,7 +21,7 @@
 
          stage('Build') {
              steps {
-                 sh 'chmod +x gradlew'
+                 sh 'chmod +x backend/gradlew'
                  sh  'backend/gradlew clean build'
 
 
