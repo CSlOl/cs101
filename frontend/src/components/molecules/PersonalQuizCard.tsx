@@ -2,6 +2,11 @@ import styled from "@emotion/styled";
 import { useState } from "react";
 import PersonalListItem from "./PersonalListItem";
 
+interface Props {
+  type: string;
+  count: string;
+}
+
 const Card = styled.div`
   margin: 8px 8px 0 0;
   width: 100%;
@@ -44,9 +49,7 @@ const Card = styled.div`
 
 // 멀티 프로세스와 멀티 스레드의 차이, 내가 푼 문제(맞은문제, 틀린문제, 즐겨찾기)
 
-export default function PersonalQuizCard(props: any) {
-  const [quizType, setQuizType] = useState<string>("맞은문제");
-
+export default function PersonalQuizCard(props: Props) {
   return (
     <Card>
       <div className="cardHeader">

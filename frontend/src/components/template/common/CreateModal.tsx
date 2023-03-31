@@ -69,7 +69,6 @@ export const SearchModalContent = styled.div`
   }
 `;
 
-const Title = styled.div``;
 interface Props {
   clickModal: any;
 }

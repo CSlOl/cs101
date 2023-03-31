@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { atom, useRecoilState, useRecoilValue } from "recoil";
 import styled from "@emotion/styled";
 import Header from "../components/Header";
 import { useRef } from "react";

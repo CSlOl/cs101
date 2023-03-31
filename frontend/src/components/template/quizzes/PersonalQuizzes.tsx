@@ -3,6 +3,7 @@ import ListTitle from "@/components/atoms/etc/ListTitle";
 import Status from "@/components/atoms/etc/Status";
 import SmallTag from "@/components/atoms/tags/SmallTag";
 import styled from "@emotion/styled";
+import { useState } from "react";
 
 const Container = styled.div`
   width: 100%;
@@ -61,26 +62,28 @@ const quizzes: string[] = [
   "Javascript와 TypeScript의 차이는?",
 ];
 
-const quizList: JSX.Element[] = quizzes.map((quiz) => (
-  <List>
-    <div className="favorite">
-      <FavoriteButton />
-    </div>
-    <div className="quizTitle">
-      <a href="#">{quiz}</a>
-      <div className="tag">
-        <SmallTag type="객관식" category="" />
-        <SmallTag type="" category="자료구조" />
-      </div>
-    </div>
-    <div className="status">
-      <Status />
-    </div>
-  </List>
-));
-
 // 전체 문제 리스트
 export default function PersonalQuizzes() {
+  const [id, setId] = useState<number>(0);
+
+  const quizList: JSX.Element[] = quizzes.map((quiz) => (
+    <List>
+      <div className="favorite">
+        <FavoriteButton />
+      </div>
+      <div className="quizTitle">
+        <a href="#">{quiz}</a>
+        <div className="tag">
+          <SmallTag type="객관식" category="" />
+          <SmallTag type="" category="자료구조" />
+        </div>
+      </div>
+      <div className="status">
+        <Status />
+      </div>
+    </List>
+  ));
+
   return (
     <Container>
       <ListTitle />

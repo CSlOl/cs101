@@ -1,4 +1,3 @@
-import styled from "@emotion/styled";
 import AuthInput from "@/components/atoms/inputs/AuthInput";
 import MediumButton from "@/components/atoms/buttons/MediumButton";
 
