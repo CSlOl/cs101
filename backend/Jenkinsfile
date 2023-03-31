@@ -2,7 +2,7 @@
      agent any 	// 사용 가능한 에이전트에서 이 파이프라인 또는 해당 단계를 실행
 
      stages {
-         stage('Prepare') {
+         stage('Clone') {
              steps {
                  git branch: 'develop',
                      url: 'https://github.com/CSlOl/cs101.git',
@@ -21,7 +21,7 @@
 
          stage('Build') {
              steps {
-                 dir('.'){
+                 dir('backend'){
                     sh './gradlew clean build'
                  }
              }
@@ -62,7 +62,7 @@
 
          stage('Dockerizing'){
              steps{
-                dir('.'){
+                dir('backend'){
                     sh 'echo " Image Bulid Start"'
                     sh 'docker buildx build —platform=linux/amd64 -t jjoon0306/cs101-be .'
                  }
