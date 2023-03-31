@@ -60,6 +60,7 @@ const Container = styled.div`
 export default function PersonalListItem() {
   const [quizCategory, setQuizCategory] = useState<string>("자료구조");
   const [quizType, setQuizType] = useState<string>("객관식");
+  const [id, setId] = useState<number>(0);
 
   const titles: string[] = [
     "stack이 무엇인지 알아보자",
@@ -68,7 +69,7 @@ export default function PersonalListItem() {
   ];
 
   const titleList: JSX.Element[] = titles.map((title) => (
-    <div className="quizList">
+    <div key={id} className="quizList">
       <li className="quizTag">
         <SmallTag category={quizCategory} type="" />
         <SmallTag type={quizType} category="" />

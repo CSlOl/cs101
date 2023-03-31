@@ -1,5 +1,10 @@
 import styled from "@emotion/styled";
 
+interface Props {
+  type: string;
+  category: string;
+}
+
 const Tag = styled.button`
   width: 100px;
   height: 30px;
@@ -12,7 +17,7 @@ const Tag = styled.button`
 `;
 
 // 마이페이지 내가 만든 문제에서 쓰이는 중간 크기의 태그
-export default function MediumTag(props: any) {
+export default function MediumTag(props: Props) {
   return (
     <div>
       {props.type ? <Tag>{props.type}</Tag> : <Tag>{props.category}</Tag>}

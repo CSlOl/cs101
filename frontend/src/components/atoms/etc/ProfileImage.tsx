@@ -1,7 +1,4 @@
 import styled from "@emotion/styled";
-import { useEffect, useRef, useState } from "react";
-
-import circle_basic from "public/circle_basic.png";
 
 const Container = styled.div`
   display: flex;

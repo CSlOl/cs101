@@ -70,6 +70,7 @@ const quizzes: string[] = [
 ];
 
 export default function CreatedQuizzes() {
+  const [id, setId] = useState<number>(0);
   const [date, setDate] = useState<string>("2023-04-12 (수)");
   const [username, setUsername] = useState<string>("sunyeong412");
   const [color, setColor] = useState<string>("red");
@@ -88,7 +89,7 @@ export default function CreatedQuizzes() {
   };
 
   const quizList: JSX.Element[] = quizzes.map((quiz) => (
-    <List>
+    <List key={id}>
       <div className="date">{date}</div>
       <div className="quizTitle">
         <a href="#">{quiz}</a>

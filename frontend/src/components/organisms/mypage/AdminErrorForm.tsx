@@ -1,5 +1,4 @@
 import AdminErrorListItem from "@/components/molecules/AdminErrorListItem";
-import RegisterQuizCard from "@/components/molecules/RegisterQuizCard";
 import styled from "@emotion/styled";
 import { useState } from "react";
 
@@ -30,8 +29,6 @@ const Container = styled.div`
 `;
 
 export default function AdminErrorForm() {
-  const [height, setHeight] = useState<string>("40%");
-
   return (
     <Container>
       <div className="userCreatedQuizHeader">

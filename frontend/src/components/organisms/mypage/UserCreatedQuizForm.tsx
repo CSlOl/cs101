@@ -28,8 +28,6 @@ const Container = styled.div`
 `;
 
 export default function UserCreatedQuizForm() {
-  const [height, setHeight] = useState<string>("40%");
-
   return (
     <Container>
       <div className="userCreatedQuizHeader">

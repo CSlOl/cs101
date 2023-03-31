@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
 
 interface Props {
-  num: Number;
-  text: String;
+  num: number;
+  text: string;
 }
 
 const Box = styled.button`

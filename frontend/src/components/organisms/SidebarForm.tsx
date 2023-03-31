@@ -31,8 +31,7 @@ const List = styled.li`
 `;
 
 export default function SidebarForm(props: Props) {
-  const [number, setNumber] = useState<number>(12);
-
+  const [id, setId] = useState<number>(0);
   const types: string[] = ["객관식", "주관식", "서술형"];
 
   const categories: string[] = [
@@ -44,7 +43,7 @@ export default function SidebarForm(props: Props) {
   ];
 
   const categoryList: JSX.Element[] = categories.map((category) => (
-    <ul className="list">
+    <ul key={id} className="list">
       <List>
         <div className="listTitle">{category}</div>
         <div className="numberTag">
@@ -55,7 +54,7 @@ export default function SidebarForm(props: Props) {
   ));
 
   const typeList: JSX.Element[] = types.map((category) => (
-    <ul className="list">
+    <ul key={id} className="list">
       <List>
         <div className="listTitle">{category}</div>
         <div className="numberTag">

@@ -31,6 +31,7 @@ const Container = styled.div`
 `;
 
 export default function RegisterListItem() {
+  const [id, setId] = useState<number>(0);
   const [quizCategory, setQuizCategory] = useState<string>("자료구조");
   const [quizType, setQuizType] = useState<string>("객관식");
   const [authRequestStatus, setAuthRequestStatus] =
@@ -42,10 +43,10 @@ export default function RegisterListItem() {
   ];
 
   const titleList: JSX.Element[] = titles.map((title) => (
-    <div className="quizList">
+    <div key={id} className="quizList">
       <li className="quizTag">
-        <MediumTag category={quizCategory} />
-        <MediumTag type={quizType} />
+        <MediumTag type={""} category={quizCategory} />
+        <MediumTag category={""} type={quizType} />
       </li>
       <li className="quizTitle">{title}</li>
       <li className="quizAuth">{authRequestStatus}</li>

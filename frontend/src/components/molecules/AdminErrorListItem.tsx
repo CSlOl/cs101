@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import { useState } from "react";
-import MediumTag from "../atoms/tags/MediumTag";
 
 const Container = styled.div`
   display: relative;
@@ -32,6 +31,7 @@ const Container = styled.div`
 
 export default function AdminErrorListItem() {
   const [date, setDate] = useState<string>("2023-04-12(수)");
+  const [id, setId] = useState<number>(0);
   const [authRequestStatus, setAuthRequestStatus] =
     useState<string>("승인대기중");
 
@@ -42,9 +42,15 @@ export default function AdminErrorListItem() {
 
   const titleList: JSX.Element[] = titles.map((title) => (
     <div className="quizList">
-      <li className="quizDate">{date}</li>
-      <li className="quizTitle">{title}</li>
-      <li className="quizAuth">{authRequestStatus}</li>
+      <li key={id} className="quizDate">
+        {date}
+      </li>
+      <li key={id} className="quizTitle">
+        {title}
+      </li>
+      <li key={id} className="quizAuth">
+        {authRequestStatus}
+      </li>
     </div>
   ));
 
