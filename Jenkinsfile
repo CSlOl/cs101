@@ -19,47 +19,6 @@
              }
          }
 
-         stage('Build') {
-             steps {
-                 dir('backend'){
-                    sh './gradlew clean build'
-                 }
-             }
-             post {
-                 success {
-                     echo 'gradle build success'
-                 }
-
-                 failure {
-                     echo 'gradle build failed'
-                 }
-             }
-         }
-         stage('Test') {
-             steps {
-                 echo  '테스트 단계와 관련된 몇 가지 단계를 수행합니다.'
-             }
-         }
-         stage('Docker Rm') {
-             steps {
-                 sh 'echo "Docker Rm Start"'
-                 sh """
-                 docker stop jjoon0306/cs101-be
-                 docker rm jjoon0306/cs101-be
-                 docker rmi -f jjoon0306/cs101-be
-                 """
-             }
-
-             post {
-                 success {
-                     sh 'echo "Docker Rm Success"'
-                 }
-                 failure {
-                     sh 'echo "Docker Rm Fail"'
-                 }
-             }
-         }
-
          stage('Dockerizing'){
              steps{
                 dir('backend'){
