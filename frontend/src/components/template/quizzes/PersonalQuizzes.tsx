@@ -67,7 +67,7 @@ export default function PersonalQuizzes() {
   const [id, setId] = useState<number>(0);
 
   const quizList: JSX.Element[] = quizzes.map((quiz) => (
-    <List>
+    <List key={id}>
       <div className="favorite">
         <FavoriteButton />
       </div>

@@ -41,16 +41,10 @@ export default function AdminErrorListItem() {
   ];
 
   const titleList: JSX.Element[] = titles.map((title) => (
-    <div className="quizList">
-      <li key={id} className="quizDate">
-        {date}
-      </li>
-      <li key={id} className="quizTitle">
-        {title}
-      </li>
-      <li key={id} className="quizAuth">
-        {authRequestStatus}
-      </li>
+    <div className="quizList" key={id}>
+      <li className="quizDate">{date}</li>
+      <li className="quizTitle">{title}</li>
+      <li className="quizAuth">{authRequestStatus}</li>
     </div>
   ));
 
