@@ -4,6 +4,7 @@ pipeline {
     stages {
         stage('Clone') {
             steps {
+                cleanWs()
                 git branch: 'develop',
                     url: 'https://github.com/CSlOl/cs101.git',
                     credentialsId: 'junpark36'
@@ -21,7 +22,6 @@ pipeline {
 
         stage('Build') {
             steps {
-                cleanWs()
                 dir('backend'){
                     sh  './gradlew clean build'
 
