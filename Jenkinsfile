@@ -23,7 +23,6 @@ pipeline {
             steps {
                 cleanWs()
                 dir('backend'){
-                    sh 'chmod +x gradlew'
                     sh  './gradlew clean build'
 
                     sh 'ls -al ./build'
