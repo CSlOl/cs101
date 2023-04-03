@@ -49,7 +49,6 @@ pipeline {
 
         stage('Dockerizing'){
             steps{
-                sh 'docker rmi jjoon0306/cs101-be'
                 dir('backend'){
                     sh 'echo " Image Bulid Start"'
                     sh 'docker build -t jjoon0306/cs101-be .'
