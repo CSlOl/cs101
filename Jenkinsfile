@@ -21,6 +21,7 @@ pipeline {
 
         stage('Build') {
             steps {
+                cleanWs()
                 dir('backend'){
                     sh 'chmod +x gradlew'
                     sh  './gradlew clean build'
@@ -30,6 +31,14 @@ pipeline {
             }
 
             post {
+                always {
+                    cleanWs(cleanWhenNotBuilt: true,
+                            deleteDirs: true,
+                            disableDeferredWipeout: true,
+                            notFailBuild: true,
+                            patterns: [[pattern: '.gitignore', type: 'INCLUDE'],
+                                        [pattern: '.propsfile', type: 'EXCLUDE']])
+                }
                 success {
                     echo 'gradle build success'
                 }
