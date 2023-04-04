@@ -38,7 +38,6 @@ pipeline {
 
         stage('Docker Cleanup') {
             steps {
-                sh 'docker rm $(docker ps --filter status=exited -q)'
                 sh 'docker rmi -f $(docker images -f "dangling=true" -q)'
             }
         }
