@@ -4,7 +4,6 @@ pipeline {
     stages {
         stage('Clone') {
             steps {
-                cleanWs()
                 git branch: 'develop',
                     url: 'https://github.com/CSlOl/cs101.git',
                     credentialsId: 'junpark36'
@@ -24,20 +23,10 @@ pipeline {
             steps {
                 dir('backend'){
                     sh  './gradlew clean build'
-
-                    sh 'ls -al ./build'
                 }
             }
 
             post {
-                always {
-                    cleanWs(cleanWhenNotBuilt: true,
-                            deleteDirs: true,
-                            disableDeferredWipeout: true,
-                            notFailBuild: true,
-                            patterns: [[pattern: '.gitignore', type: 'INCLUDE'],
-                                        [pattern: '.propsfile', type: 'EXCLUDE']])
-                }
                 success {
                     echo 'gradle build success'
                 }
@@ -47,10 +36,16 @@ pipeline {
             }
         }
 
+        stage('Docker Cleanup') {
+            steps {
+                sh 'docker system prune'
+            }
+        }
+
         stage('Dockerizing'){
             steps{
                 dir('backend'){
-                    sh 'echo " Image Bulid Start"'
+                    sh 'echo "Image Bulid Start"'
                     sh 'docker build -t jjoon0306/cs101-be .'
                 }
             }
@@ -74,7 +69,6 @@ pipeline {
                 success {
                     echo 'success'
                 }
-
                 failure {
                     echo 'failed'
                 }

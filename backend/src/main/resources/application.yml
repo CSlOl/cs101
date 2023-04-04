@@ -10,9 +10,9 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://database-2.ce6cbg1kwcyt.ap-northeast-2.rds.amazonaws.com:3306/cs101?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
-    username: admin
-    password: ha119302
+    url: ${CS101_DB_URL}
+    username: ${CS101_DB_USERNAME}
+    password: ${CS101_DB_PASSWORD}
 
   jpa:
     hibernate:
