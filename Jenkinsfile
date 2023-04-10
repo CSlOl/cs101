@@ -38,7 +38,7 @@ pipeline {
 
         stage('Docker Cleanup') {
             steps {
-
+                sh 'echo "Docker Cleanup Start"'
             }
         }
 
