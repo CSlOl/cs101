@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bc7f5230-93c4-47ba-8317-42b245625377" name="Changes" comment="CI: fix Jenkinsfile">
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/6/9691797aa04d85d3238a4a45d4fa240168a3d92d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/9/6/9691797aa04d85d3238a4a45d4fa240168a3d92d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="bc7f5230-93c4-47ba-8317-42b245625377" name="Changes" comment="CI: fix Jenkinsfile" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -108,7 +102,7 @@
       <workItem from="1677784335190" duration="71000" />
       <workItem from="1680250091771" duration="4136000" />
       <workItem from="1680256475265" duration="13903000" />
-      <workItem from="1680773377660" duration="3744000" />
+      <workItem from="1680773377660" duration="4064000" />
     </task>
     <task id="LOCAL-00001" summary="CI: create Jenkinsfile">
       <created>1680250530353</created>
@@ -257,7 +251,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681151644241</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="CI: fix Jenkinsfile">
+      <created>1681151966926</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1681151966926</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
