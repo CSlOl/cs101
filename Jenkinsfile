@@ -46,7 +46,7 @@ pipeline {
                     sh 'echo "Docker Cleanup Success"'
                 }
                 failure {
-                    sh 'echo "Docker Cleanup Fail"'
+                    sh 'echo "Docker Cleanup"'
                 }
             }
         }
