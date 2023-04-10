@@ -102,7 +102,7 @@
       <workItem from="1677784335190" duration="71000" />
       <workItem from="1680250091771" duration="4136000" />
       <workItem from="1680256475265" duration="13903000" />
-      <workItem from="1680773377660" duration="4064000" />
+      <workItem from="1680773377660" duration="4687000" />
     </task>
     <task id="LOCAL-00001" summary="CI: create Jenkinsfile">
       <created>1680250530353</created>
@@ -258,7 +258,21 @@
       <option name="project" value="LOCAL" />
       <updated>1681151966926</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="CI: fix Jenkinsfile">
+      <created>1681152248944</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1681152248944</updated>
+    </task>
+    <task id="LOCAL-00024" summary="CI: fix Jenkinsfile">
+      <created>1681152257789</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1681152257789</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

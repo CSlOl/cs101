@@ -39,6 +39,8 @@ pipeline {
         stage('Docker Cleanup') {
             steps {
                 sh 'echo "Docker Cleanup Start"'
+                sh 'docker stop cs101-be'
+                sh 'docker rmi jjoon0306/cs101-be'
             }
 
             post {
