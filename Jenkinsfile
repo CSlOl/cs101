@@ -42,7 +42,9 @@ pipeline {
             }
 
             post {
-                sh 'echo "Docker Cleanup Success"'
+                success {
+                    sh 'echo "Docker Cleanup Success"'
+                }
             }
         }
 
