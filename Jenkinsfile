@@ -4,6 +4,7 @@ pipeline {
     stages {
         stage('Clone') {
             steps {
+                cleanWs()
                 git branch: 'develop',
                     url: 'https://github.com/CSlOl/cs101.git',
                     credentialsId: 'junpark36'
