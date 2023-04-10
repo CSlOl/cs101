@@ -38,14 +38,14 @@ pipeline {
 
         stage('Docker Cleanup') {
             steps {
-                sh 'docker rmi -f $(docker images -f "dangling=true" -q)'
+
             }
         }
 
         stage('Dockerizing'){
             steps{
                 dir('backend'){
-                    sh 'echo "Image Bulid Start"'
+                    sh 'echo "Backend Image Bulid Start"'
                     sh 'docker build -t jjoon0306/cs101-be .'
                 }
             }
@@ -62,7 +62,7 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                sh 'docker run -p 8080:80 -e CS101_DB_URL=$CS101_DB_URL -e CS101_DB_USERNAME=$CS101_DB_USERNAME -e CS101_DB_PASSWORD=$CS101_DB_PASSWORD jjoon0306/cs101-be'
+                sh 'docker run -d --rm -p 8080:80 -e CS101_DB_URL=$CS101_DB_URL -e CS101_DB_USERNAME=$CS101_DB_USERNAME -e CS101_DB_PASSWORD=$CS101_DB_PASSWORD --name cs101-be jjoon0306/cs101-be'
             }
 
             post {
@@ -73,6 +73,15 @@ pipeline {
                     echo 'failed'
                 }
             }
+        }
+    }
+
+    post {
+        success {
+            echo 'deploy success'
+        }
+        failure {
+            echo 'deploy failed'
         }
     }
 }
