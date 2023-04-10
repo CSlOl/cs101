@@ -40,6 +40,10 @@ pipeline {
             steps {
                 sh 'echo "Docker Cleanup Start"'
             }
+
+            post {
+                sh 'echo "Docker Cleanup Success"'
+            }
         }
 
         stage('Dockerizing'){
