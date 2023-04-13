@@ -10,6 +10,7 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
+@Builder
 public class Daily {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
