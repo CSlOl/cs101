@@ -2,6 +2,7 @@ package com.cs101.api.controller;
 
 import com.cs101.api.service.ReportService;
 import com.cs101.dto.request.CreateReportReq;
+import com.cs101.dto.request.UpdateReportReq;
 import com.cs101.dto.response.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -29,5 +30,13 @@ public class ReportController {
         return ResponseEntity
                 .ok()
                 .body(new ApiResponse(200, "신고 상세 조회 성공", reportService.getReportDetail(reportId)));
+    }
+
+    @PutMapping("/{reportId}")
+    public ResponseEntity<ApiResponse> updateReportDetail(@RequestBody UpdateReportReq updateReportReq, @PathVariable Long reportId) throws IOException {
+        reportService.updateReportDetail(updateReportReq, reportId);
+        return ResponseEntity
+                .ok()
+                .body(new ApiResponse(201, "신고 수정 성공", null));
     }
 }

@@ -3,6 +3,7 @@ package com.cs101.api.service;
 import com.cs101.api.repository.ReportRepository;
 import com.cs101.api.repository.UserRepository;
 import com.cs101.dto.request.CreateReportReq;
+import com.cs101.dto.request.UpdateReportReq;
 import com.cs101.dto.response.report.ReportDetail;
 import com.cs101.dto.response.report.ReportDetailRes;
 import com.cs101.entity.Report;
@@ -11,6 +12,8 @@ import com.cs101.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import static org.springframework.util.StringUtils.hasText;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -52,5 +55,22 @@ public class ReportService {
                 .build();
 
         return reportDetailRes;
+    }
+
+    public void updateReportDetail(UpdateReportReq updateReportReq, Long reportId) {
+        Report report = reportRepository.findById(reportId).orElse(null);
+        if (hasText(updateReportReq.getTitle()) && hasText(updateReportReq.getContent())) {
+            report.setTitle(updateReportReq.getTitle());
+            report.setContent(updateReportReq.getContent());
+        }
+
+        if (hasText(updateReportReq.getReportStatus())) {
+            String reportStatus = updateReportReq.getReportStatus();
+            if ("IN_PROGRESS".equals(reportStatus)) {
+                report.setReportStatus(ReportStatus.IN_PROGRESS);
+            } else if ("RESOLVED".equals(reportStatus)) {
+                report.setReportStatus(ReportStatus.RESOLVED);
+            }
+        }
     }
 }
