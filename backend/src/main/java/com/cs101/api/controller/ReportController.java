@@ -5,10 +5,7 @@ import com.cs101.dto.request.CreateReportReq;
 import com.cs101.dto.response.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 
@@ -25,5 +22,12 @@ public class ReportController {
         return ResponseEntity
                 .ok()
                 .body(new ApiResponse(201, "신고 등록 성공", null));
+    }
+
+    @GetMapping("/{reportId}")
+    public ResponseEntity<ApiResponse> getReportDetail(@PathVariable Long reportId) throws IOException {
+        return ResponseEntity
+                .ok()
+                .body(new ApiResponse(200, "신고 상세 조회 성공", reportService.getReportDetail(reportId)));
     }
 }

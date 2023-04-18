@@ -3,6 +3,8 @@ package com.cs101.api.service;
 import com.cs101.api.repository.ReportRepository;
 import com.cs101.api.repository.UserRepository;
 import com.cs101.dto.request.CreateReportReq;
+import com.cs101.dto.response.report.ReportDetail;
+import com.cs101.dto.response.report.ReportDetailRes;
 import com.cs101.entity.Report;
 import com.cs101.entity.ReportStatus;
 import com.cs101.entity.User;
@@ -31,5 +33,24 @@ public class ReportService {
                 .build();
         reportRepository.save(report);
 
+    }
+
+    public ReportDetailRes getReportDetail(Long reportId) {
+        Report report = reportRepository.findById(reportId).orElse(null);
+        ReportDetail reportDetail = ReportDetail.builder()
+                .reportId(report.getId())
+                .title(report.getTitle())
+                .content(report.getContent())
+                .registeredDate(report.getRegisteredDate())
+                .reportStatus(report.getReportStatus())
+                .userId(report.getUser().getId())
+                .userName(report.getUser().getName())
+                .build();
+
+        ReportDetailRes reportDetailRes = ReportDetailRes.builder()
+                .report(reportDetail)
+                .build();
+
+        return reportDetailRes;
     }
 }
