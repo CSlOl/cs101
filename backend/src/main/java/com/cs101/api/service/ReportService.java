@@ -43,8 +43,15 @@ public class ReportService {
 
     }
 
-    public ReportListRes getReportList() {
-        List<Report> reportList = reportRepository.findAll();
+    public ReportListRes getReportList(String reportStatus) {
+        List<Report> reportList = null;
+        if ("in_progress".equals(reportStatus)) {
+            reportList = reportRepository.findByReportStatus(ReportStatus.IN_PROGRESS);
+        } else if ("resolved".equals(reportStatus)) {
+            reportList = reportRepository.findByReportStatus(ReportStatus.RESOLVED);
+        } else if (reportList == null) {
+            reportList = reportRepository.findAll();
+        }
 
         Stream<ReportListItem> reportListItemStream = reportList.stream().map((Report r) -> ReportListItem.builder()
                 .reportId(r.getId())

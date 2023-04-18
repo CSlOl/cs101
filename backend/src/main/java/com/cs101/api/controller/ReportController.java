@@ -26,10 +26,10 @@ public class ReportController {
     }
 
     @GetMapping()
-    public ResponseEntity<ApiResponse> getReportList() throws IOException {
+    public ResponseEntity<ApiResponse> getReportList(@RequestParam(value = "status", required = false) String reportStatus) throws IOException {
         return ResponseEntity
                 .ok()
-                .body(new ApiResponse(200, "신고 목록 조회 성공", reportService.getReportList()));
+                .body(new ApiResponse(200, "신고 목록 조회 성공", reportService.getReportList(reportStatus)));
     }
 
     @GetMapping("/{reportId}")
