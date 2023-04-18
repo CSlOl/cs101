@@ -4,6 +4,8 @@ import com.cs101.api.repository.ReportRepository;
 import com.cs101.api.repository.UserRepository;
 import com.cs101.dto.request.CreateReportReq;
 import com.cs101.dto.request.UpdateReportReq;
+import com.cs101.dto.response.report.ReportListItem;
+import com.cs101.dto.response.report.ReportListRes;
 import com.cs101.dto.response.report.ReportDetail;
 import com.cs101.dto.response.report.ReportDetailRes;
 import com.cs101.entity.Report;
@@ -17,6 +19,9 @@ import static org.springframework.util.StringUtils.hasText;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 @Transactional
@@ -36,6 +41,25 @@ public class ReportService {
                 .build();
         reportRepository.save(report);
 
+    }
+
+    public ReportListRes getReportList() {
+        List<Report> reportList = reportRepository.findAll();
+
+        Stream<ReportListItem> reportListItemStream = reportList.stream().map((Report r) -> ReportListItem.builder()
+                .reportId(r.getId())
+                .title(r.getTitle())
+                .registeredDate(r.getRegisteredDate())
+                .reportStatus(r.getReportStatus())
+                .userName(r.getUser().getName())
+                .userId(r.getUser().getId())
+                .build());
+
+        ReportListRes reportListRes = ReportListRes.builder()
+                .reports(reportListItemStream.collect(Collectors.toList()))
+                .build();
+
+        return reportListRes;
     }
 
     public ReportDetailRes getReportDetail(Long reportId) {

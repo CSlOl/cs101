@@ -25,6 +25,13 @@ public class ReportController {
                 .body(new ApiResponse(201, "신고 등록 성공", null));
     }
 
+    @GetMapping()
+    public ResponseEntity<ApiResponse> getReportList() throws IOException {
+        return ResponseEntity
+                .ok()
+                .body(new ApiResponse(200, "신고 목록 조회 성공", reportService.getReportList()));
+    }
+
     @GetMapping("/{reportId}")
     public ResponseEntity<ApiResponse> getReportDetail(@PathVariable Long reportId) throws IOException {
         return ResponseEntity
