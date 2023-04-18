@@ -10,6 +10,7 @@ import javax.persistence.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @ToString(of = {"id", "content"})
+@Builder
 public class Knowledge {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
