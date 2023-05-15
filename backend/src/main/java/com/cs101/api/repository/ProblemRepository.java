@@ -9,10 +9,8 @@ import java.util.List;
 
 @Repository
 public interface ProblemRepository extends JpaRepository<Problem, Long> {
-
-//    @Query("SELECT p.topic.name, COUNT(p) FROM Problem p GROUP BY p.topic")
-//    List<Object[]> getTopicInfo();
-//
-//    @Query("SELECT p.category.name, COUNT(p) FROM Problem p GROUP BY p.category")
-//    List<Object[]> getCategoryInfo();
+    @Query("SELECT t.name, COUNT(p.id) FROM Type t LEFT JOIN Problem p ON p.type = t GROUP BY t.id")
+    List<String[]> getTypeInfo();
+    @Query("SELECT c.name, COUNT(p.id) FROM Category c LEFT JOIN Problem p ON p.category = c GROUP BY c.id")
+    List<String[]> getCategoryInfo();
 }

@@ -2,6 +2,7 @@ package com.cs101.api.service;
 
 import com.cs101.api.repository.PendingProblemRepository;
 import com.cs101.api.repository.CategoryRepository;
+import com.cs101.api.repository.ProblemRepository;
 import com.cs101.dto.response.problem.ProblemListInfoRes;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,18 +15,17 @@ import java.util.List;
 @Transactional
 @RequiredArgsConstructor
 public class ProblemService {
-//    private final ProblemRepository problemRepository;
+    private final ProblemRepository problemRepository;
     private final PendingProblemRepository pendingProblemRepository;
     private final CategoryRepository categoryRepository;
 
     public ProblemListInfoRes getProblemListInfo() {
-        List<Object[]> topicInfo = pendingProblemRepository.getTopicInfo();
-
-        topicInfo.stream().forEach((item) -> System.out.println(Arrays.toString(item)));
+        List<String[]> typeInfo = problemRepository.getTypeInfo();
+        List<String[]> categoryInfo = problemRepository.getCategoryInfo();
 
         ProblemListInfoRes problemListInfoRes = ProblemListInfoRes.builder()
-                .categories(null)
-                .types(null)
+                .categories(categoryInfo)
+                .types(typeInfo)
                 .build();
 
         return problemListInfoRes;
