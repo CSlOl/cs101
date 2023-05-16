@@ -12,6 +12,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
+@Builder
 @ToString(of = {"id", "question", "option1", "option2", "option3", "option4", "answer", "description", "acceptedDate"})
 public class Problem {
     @Id
@@ -30,7 +31,7 @@ public class Problem {
     private LocalDateTime acceptedDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "topic_id")
+    @JoinColumn(name = "type_id")
     private Type type;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -39,7 +40,7 @@ public class Problem {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private User user;
+    private User author;
 
     @OneToMany(mappedBy = "problem", cascade = {CascadeType.ALL})
     private List<UserProblem> userProblems = new ArrayList<>();
