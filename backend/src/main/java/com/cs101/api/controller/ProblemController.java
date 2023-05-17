@@ -1,6 +1,7 @@
 package com.cs101.api.controller;
 
 import com.cs101.api.service.ProblemService;
+import com.cs101.dto.request.SubmitAnswerReq;
 import com.cs101.dto.response.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,14 @@ import java.io.IOException;
 @RequestMapping("/problem")
 public class ProblemController {
     private final ProblemService problemService;
+
+    @PostMapping
+    public ResponseEntity<ApiResponse> submitAnswer(@RequestBody SubmitAnswerReq submitAnswerReq) throws IOException {
+        Long userId = 1L;
+        return ResponseEntity
+                .ok()
+                .body(new ApiResponse(200, "답안 제출 성공", problemService.checkAnswer(userId, submitAnswerReq.getProblemId(), submitAnswerReq.getAnswer())));
+    }
 
     @GetMapping("/listInfo")
     public ResponseEntity<ApiResponse> getProblemListInfo() throws IOException {
@@ -30,8 +39,28 @@ public class ProblemController {
 
     @GetMapping("/{problemId}")
     public ResponseEntity<ApiResponse> getProblemDetail(@PathVariable Long problemId){
+        Long userId = 1L;
         return ResponseEntity
                 .ok()
-                .body(new ApiResponse(200, "문제 상세 조회 성공", problemService.getProblemDetail(problemId)));
+                .body(new ApiResponse(200, "문제 상세 조회 성공", problemService.getProblemDetail(userId, problemId)));
     }
+
+    @PostMapping("/favorites/{problemId}")
+    public ResponseEntity<ApiResponse> addFavorites(@PathVariable Long problemId){
+        Long userId = 1L;
+        problemService.addFavorites(userId, problemId);
+        return ResponseEntity
+                .ok()
+                .body(new ApiResponse(200, "즐겨찾기 추가 성공", null));
+    }
+
+    @DeleteMapping("/favorites/{problemId}")
+    public ResponseEntity<ApiResponse> deleteFavorites(@PathVariable Long problemId){
+        Long userId = 1L;
+        problemService.deleteFavorites(userId, problemId);
+        return ResponseEntity
+                .ok()
+                .body(new ApiResponse(200, "즐겨찾기 삭제 성공", null));
+    }
+
 }

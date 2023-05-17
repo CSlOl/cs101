@@ -4,10 +4,12 @@ import com.cs101.api.repository.*;
 import com.cs101.dto.response.problem.*;
 import com.cs101.entity.*;
 import com.cs101.exception.NoProblemByIdException;
+import com.cs101.exception.NoUserByIdException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -17,8 +19,6 @@ import java.util.stream.Stream;
 @RequiredArgsConstructor
 public class ProblemService {
     private final ProblemRepository problemRepository;
-    private final CategoryRepository categoryRepository;
-    private final TypeRepository typeRepository;
     private final UserRepository userRepository;
     private final FavoritesRepository favoritesRepository;
     private final UserProblemRepository userProblemRepository;
@@ -53,10 +53,10 @@ public class ProblemService {
         return problemListRes;
     }
 
-    public ProblemDetailRes getProblemDetail(Long problemId){
-
+    public ProblemDetailRes getProblemDetail(Long userId, Long problemId){
+        User user = userRepository.findById(userId).orElseThrow(() -> new NoUserByIdException("" + userId));
         Problem problem = problemRepository.findById(problemId).orElseThrow(() -> new NoProblemByIdException("" + problemId));
-        Boolean isFavorite = favoritesRepository.findById(1L, 1L).orElse(false);
+        Boolean isFavorite = favoritesRepository.findById(user, problem).isPresent();
         UserProblemStatus status = userProblemRepository.getProblemStatus(1L, 1L).orElse(UserProblemStatus.UNSOLVED);
 
         ProblemDetail problemDetail = ProblemDetail.builder()
@@ -79,5 +79,44 @@ public class ProblemService {
                 .build();
 
         return problemDetailRes;
+    }
+
+    public SubmitAnswerRes checkAnswer(Long userId, Long problemId, String answer) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new NoUserByIdException("" + userId));
+        Problem problem = problemRepository.findById(problemId).orElseThrow(() -> new NoProblemByIdException("" + problemId));
+        boolean isCorrect = problem.getAnswer().equals(answer);
+
+        UserProblem userProblem = UserProblem.builder()
+                .user(user)
+                .problem(problem)
+                .userProblemStatus(isCorrect ? UserProblemStatus.CORRECT : UserProblemStatus.INCORRECT)
+                .solvedDate(LocalDateTime.now())
+                .build();
+        userProblemRepository.save(userProblem);
+
+        SubmitAnswerRes submitAnswerRes = SubmitAnswerRes.builder()
+                .isCorrect(isCorrect)
+                .build();
+
+        return submitAnswerRes;
+    }
+
+    public void addFavorites(Long userId, Long problemId) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new NoUserByIdException("" + userId));
+        Problem problem = problemRepository.findById(problemId).orElseThrow(() -> new NoProblemByIdException("" + problemId));
+
+        Favorites favorites = Favorites.builder()
+                .user(user)
+                .problem(problem)
+                .build();
+
+        favoritesRepository.save(favorites);
+    }
+
+    public void deleteFavorites(Long userId, Long problemId) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new NoUserByIdException("" + userId));
+        Problem problem = problemRepository.findById(problemId).orElseThrow(() -> new NoProblemByIdException("" + problemId));
+
+        favoritesRepository.deleteFavorites(user, problem);
     }
 }

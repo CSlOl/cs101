@@ -6,14 +6,16 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 public interface PendingProblemRepository extends JpaRepository<PendingProblem, Long> {
-    @Query("SELECT c.name, COUNT(p.id) FROM Category c LEFT JOIN PendingProblem p ON p.category = c GROUP BY c.id")
+    @Query("select c.name, COUNT(p.id) from Category c left join PendingProblem p on p.category = c group by c.id")
     List<Object[]> getCategoryInfo();
 
     @Modifying
-    @Query("update PendingProblem p set p.pendingStatus=:pendingStatus where p.id=:problemId")
-    void updatePendingStatus(@Param("problemId") Long problemId, @Param("pendingStatus") PendingStatus pendingStatus);
+    @Transactional
+    @Query("update PendingProblem p set p.pendingStatus=:pendingStatus where p=:pendingProblem")
+    void updatePendingStatus(@Param("pendingProblem") PendingProblem pendingProblem, @Param("pendingStatus") PendingStatus pendingStatus);
 }

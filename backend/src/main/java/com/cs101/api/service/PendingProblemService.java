@@ -58,6 +58,7 @@ public class PendingProblemService {
 
     public void acceptProblem(AcceptProblemReq acceptProblemReq) throws IOException {
         User user = userRepository.findById(acceptProblemReq.getAuthorId()).orElseThrow(() -> new NoUserByIdException("" + acceptProblemReq.getAuthorId()));
+        PendingProblem pendingProblem = pendingProblemRepository.findById(acceptProblemReq.getProblemId()).orElseThrow(() -> new NoProblemByIdException("" + acceptProblemReq.getProblemId()));
         Category category = categoryRepository.findByName(acceptProblemReq.getCategory()).orElseThrow(() -> new NoCategoryByNameException(acceptProblemReq.getCategory()));
         Type type = typeRepository.findByName(acceptProblemReq.getType()).orElseThrow(() -> new NoTypeByNameException(acceptProblemReq.getType()));
 
@@ -78,11 +79,13 @@ public class PendingProblemService {
                 .build();
         problemRepository.save(problem);
 
-        pendingProblemRepository.updatePendingStatus(acceptProblemReq.getProblemId(), PendingStatus.ACCEPTED);
+        pendingProblemRepository.updatePendingStatus(pendingProblem, PendingStatus.ACCEPTED);
     }
 
     public void refuseProblem(Long problemId) {
-        pendingProblemRepository.updatePendingStatus(problemId, PendingStatus.REJECTED);
+        PendingProblem pendingProblem = pendingProblemRepository.findById(problemId).orElseThrow(() -> new NoProblemByIdException("" + problemId));
+
+        pendingProblemRepository.updatePendingStatus(pendingProblem, PendingStatus.REJECTED);
     }
 
     public PendingProblemListRes getPendingProblemList() {

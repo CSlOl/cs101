@@ -9,6 +9,7 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
+@Builder
 public class Favorites {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
