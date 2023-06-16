@@ -1,6 +1,8 @@
 package com.cs101.api.service;
 
 import com.cs101.api.repository.*;
+import com.cs101.api.repository.problem.ProblemRepository;
+import com.cs101.dto.request.Filter;
 import com.cs101.dto.response.problem.*;
 import com.cs101.entity.*;
 import com.cs101.exception.NoProblemByIdException;
@@ -35,8 +37,8 @@ public class ProblemService {
         return problemListInfoRes;
     }
 
-    public ProblemListRes getProblemList() {
-        List<Problem> problemList = problemRepository.findAll();
+    public ProblemListRes getProblemList(Filter filter) {
+        List<Problem> problemList = problemRepository.findByFilter(filter);
 
         Stream<ProblemListItem> problemListItemStream = problemList.stream().map((Problem p) -> ProblemListItem.builder()
                 .problemId(p.getId())
@@ -51,6 +53,10 @@ public class ProblemService {
                 .build();
 
         return problemListRes;
+    }
+
+    public List<Problem> getProblems() {
+        return problemRepository.findAll();
     }
 
     public ProblemDetailRes getProblemDetail(Long userId, Long problemId){
@@ -79,6 +85,10 @@ public class ProblemService {
                 .build();
 
         return problemDetailRes;
+    }
+
+    public Problem getProblem(Long id) {
+        return problemRepository.findById(id).orElse(null);
     }
 
     public SubmitAnswerRes checkAnswer(Long userId, Long problemId, String answer) {

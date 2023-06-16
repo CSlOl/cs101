@@ -1,4 +1,4 @@
-package com.cs101.api.repository;
+package com.cs101.api.repository.problem;
 
 import com.cs101.entity.Category;
 import org.springframework.data.jpa.repository.JpaRepository;

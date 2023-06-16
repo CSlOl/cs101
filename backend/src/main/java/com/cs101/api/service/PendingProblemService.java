@@ -1,6 +1,10 @@
 package com.cs101.api.service;
 
 import com.cs101.api.repository.*;
+import com.cs101.api.repository.problem.CategoryRepository;
+import com.cs101.api.repository.problem.PendingProblemRepository;
+import com.cs101.api.repository.problem.ProblemRepository;
+import com.cs101.api.repository.problem.TypeRepository;
 import com.cs101.dto.request.CreatePendingProblemReq;
 import com.cs101.dto.request.AcceptProblemReq;
 import com.cs101.dto.response.problem.PendingProblemDetailRes;
