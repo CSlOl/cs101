@@ -33,7 +33,7 @@ public class PendingProblem {
     private PendingStatus pendingStatus;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "topic_id")
+    @JoinColumn(name = "type_id")
     private Type type;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -42,7 +42,7 @@ public class PendingProblem {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private User user;
+    private User author;
 
     @OneToMany(mappedBy = "problem", cascade = {CascadeType.ALL})
     private List<UserProblem> userProblems = new ArrayList<>();

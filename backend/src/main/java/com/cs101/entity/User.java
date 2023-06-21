@@ -39,10 +39,10 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "user", cascade = {CascadeType.ALL})
     private List<Report> reports = new ArrayList<>();
 
-    @OneToMany(mappedBy = "user", cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "author", cascade = {CascadeType.ALL})
     private List<Problem> problems = new ArrayList<>();
 
-    @OneToMany(mappedBy = "user", cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "author", cascade = {CascadeType.ALL})
     private List<PendingProblem> pendingProblems = new ArrayList<>();
 
 }
