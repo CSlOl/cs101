@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
-public interface PendingProblemRepository extends JpaRepository<PendingProblem, Long> {
+public interface PendingProblemRepository extends JpaRepository<PendingProblem, Long>, PendingProblemRepositoryCustom {
     @Modifying
     @Transactional
     @Query("update PendingProblem p set p.pendingStatus=:pendingStatus where p=:pendingProblem")

@@ -1,7 +1,7 @@
 package com.cs101.api.controller;
 
 import com.cs101.api.service.ProblemService;
-import com.cs101.dto.request.Filter;
+import com.cs101.dto.request.ProblemFilter;
 import com.cs101.dto.request.SubmitAnswerReq;
 import com.cs101.dto.response.ApiResponse;
 import lombok.RequiredArgsConstructor;
@@ -30,12 +30,12 @@ public class ProblemController {
     }
 
     @GetMapping
-    public ResponseEntity<ApiResponse> getProblemList(@RequestParam("categories") String categories, @RequestParam("types") String types, @RequestParam("statuses") String statuses, @RequestParam("favorites") String favorites) {
-        Filter filter = new Filter();
-        filter.setCategories(categories);
-        filter.setTypes(types);
-        filter.setStatuses(statuses);
-        filter.setFavorites(favorites.equals("true"));
+    public ResponseEntity<ApiResponse> getProblemList(@RequestParam(value = "categories", required = false) String categories, @RequestParam(value = "types", required = false) String types, @RequestParam(value = "statuses", required = false) String statuses, @RequestParam(value = "favorites", required = false) String favorites) {
+        ProblemFilter filter = new ProblemFilter();
+        if (categories != null) filter.setCategories(categories);
+        if (types != null) filter.setTypes(types);
+        if (statuses != null) filter.setStatuses(statuses);
+        if (favorites != null) filter.setFavorites(favorites.equals("true"));
 
         return ResponseEntity
                 .ok()

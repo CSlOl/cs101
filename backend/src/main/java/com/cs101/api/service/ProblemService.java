@@ -2,7 +2,7 @@ package com.cs101.api.service;
 
 import com.cs101.api.repository.*;
 import com.cs101.api.repository.problem.ProblemRepository;
-import com.cs101.dto.request.Filter;
+import com.cs101.dto.request.ProblemFilter;
 import com.cs101.dto.response.problem.*;
 import com.cs101.entity.*;
 import com.cs101.exception.NoProblemByIdException;
@@ -13,8 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 @Transactional
@@ -37,19 +35,11 @@ public class ProblemService {
         return problemListInfoRes;
     }
 
-    public ProblemListRes getProblemList(Filter filter) {
-        List<Problem> problemList = problemRepository.findByFilter(filter);
-
-        Stream<ProblemListItem> problemListItemStream = problemList.stream().map((Problem p) -> ProblemListItem.builder()
-                .problemId(p.getId())
-                .title(p.getTitle())
-                .category(p.getCategory().getName())
-                .date(p.getAcceptedDate())
-                .status(userProblemRepository.getProblemStatus(1L, p.getId()).orElse(UserProblemStatus.UNSOLVED))
-                .build());
+    public ProblemListRes getProblemList(ProblemFilter filter) {
+        List<ProblemListItem> problemList = problemRepository.findByFilter(1L, filter);
 
         ProblemListRes problemListRes = ProblemListRes.builder()
-                .problems(problemListItemStream.collect(Collectors.toList()))
+                .problems(problemList)
                 .build();
 
         return problemListRes;
@@ -60,8 +50,8 @@ public class ProblemService {
     }
 
     public ProblemDetailRes getProblemDetail(Long userId, Long problemId){
-        User user = userRepository.findById(userId).orElseThrow(() -> new NoUserByIdException("" + userId));
-        Problem problem = problemRepository.findById(problemId).orElseThrow(() -> new NoProblemByIdException("" + problemId));
+        User user = userRepository.findById(userId).orElseThrow(() -> new NoUserByIdException(String.valueOf(userId)));
+        Problem problem = problemRepository.findById(problemId).orElseThrow(() -> new NoProblemByIdException(String.valueOf(problemId)));
         Boolean isFavorite = favoritesRepository.findById(user, problem).isPresent();
         UserProblemStatus status = userProblemRepository.getProblemStatus(1L, 1L).orElse(UserProblemStatus.UNSOLVED);
 
@@ -92,8 +82,8 @@ public class ProblemService {
     }
 
     public SubmitAnswerRes checkAnswer(Long userId, Long problemId, String answer) {
-        User user = userRepository.findById(userId).orElseThrow(() -> new NoUserByIdException("" + userId));
-        Problem problem = problemRepository.findById(problemId).orElseThrow(() -> new NoProblemByIdException("" + problemId));
+        User user = userRepository.findById(userId).orElseThrow(() -> new NoUserByIdException(String.valueOf(userId)));
+        Problem problem = problemRepository.findById(problemId).orElseThrow(() -> new NoProblemByIdException(String.valueOf(problemId)));
         boolean isCorrect = problem.getAnswer().equals(answer);
 
         UserProblem userProblem = UserProblem.builder()
@@ -112,8 +102,8 @@ public class ProblemService {
     }
 
     public void addFavorites(Long userId, Long problemId) {
-        User user = userRepository.findById(userId).orElseThrow(() -> new NoUserByIdException("" + userId));
-        Problem problem = problemRepository.findById(problemId).orElseThrow(() -> new NoProblemByIdException("" + problemId));
+        User user = userRepository.findById(userId).orElseThrow(() -> new NoUserByIdException(String.valueOf(userId)));
+        Problem problem = problemRepository.findById(problemId).orElseThrow(() -> new NoProblemByIdException(String.valueOf(problemId)));
 
         Favorites favorites = Favorites.builder()
                 .user(user)
@@ -124,8 +114,8 @@ public class ProblemService {
     }
 
     public void deleteFavorites(Long userId, Long problemId) {
-        User user = userRepository.findById(userId).orElseThrow(() -> new NoUserByIdException("" + userId));
-        Problem problem = problemRepository.findById(problemId).orElseThrow(() -> new NoProblemByIdException("" + problemId));
+        User user = userRepository.findById(userId).orElseThrow(() -> new NoUserByIdException(String.valueOf(userId)));
+        Problem problem = problemRepository.findById(problemId).orElseThrow(() -> new NoProblemByIdException(String.valueOf(problemId)));
 
         favoritesRepository.deleteFavorites(user, problem);
     }

@@ -1,10 +1,10 @@
 package com.cs101.api.repository.problem;
 
-import com.cs101.dto.request.Filter;
-import com.cs101.entity.Problem;
+import com.cs101.dto.request.ProblemFilter;
+import com.cs101.dto.response.problem.ProblemListItem;
 
 import java.util.List;
 
 public interface ProblemRepositoryCustom {
-    List<Problem> findByFilter(Filter filter);
+    List<ProblemListItem> findByFilter(Long userId, ProblemFilter filter);
 }

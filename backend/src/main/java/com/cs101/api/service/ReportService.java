@@ -3,6 +3,7 @@ package com.cs101.api.service;
 import com.cs101.api.repository.ReportRepository;
 import com.cs101.api.repository.UserRepository;
 import com.cs101.dto.request.CreateReportReq;
+import com.cs101.dto.request.ReportFilter;
 import com.cs101.dto.request.UpdateReportReq;
 import com.cs101.dto.response.report.ReportListItem;
 import com.cs101.dto.response.report.ReportListRes;
@@ -11,6 +12,7 @@ import com.cs101.dto.response.report.ReportDetailRes;
 import com.cs101.entity.Report;
 import com.cs101.entity.ReportStatus;
 import com.cs101.entity.User;
+import com.cs101.exception.NoReportByIdException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,8 +22,6 @@ import static org.springframework.util.StringUtils.hasText;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 @Transactional
@@ -43,34 +43,18 @@ public class ReportService {
 
     }
 
-    public ReportListRes getReportList(String reportStatus) {
-        List<Report> reportList = null;
-        if ("in_progress".equals(reportStatus)) {
-            reportList = reportRepository.findByReportStatus(ReportStatus.IN_PROGRESS);
-        } else if ("resolved".equals(reportStatus)) {
-            reportList = reportRepository.findByReportStatus(ReportStatus.RESOLVED);
-        } else if (reportList == null) {
-            reportList = reportRepository.findAll();
-        }
-
-        Stream<ReportListItem> reportListItemStream = reportList.stream().map((Report r) -> ReportListItem.builder()
-                .reportId(r.getId())
-                .title(r.getTitle())
-                .registeredDate(r.getRegisteredDate())
-                .reportStatus(r.getReportStatus())
-                .userName(r.getUser().getName())
-                .userId(r.getUser().getId())
-                .build());
+    public ReportListRes getReportList(ReportFilter filter) {
+        List<ReportListItem> reportList = reportRepository.findByFilter(filter);
 
         ReportListRes reportListRes = ReportListRes.builder()
-                .reports(reportListItemStream.collect(Collectors.toList()))
+                .reports(reportList)
                 .build();
 
         return reportListRes;
     }
 
     public ReportDetailRes getReportDetail(Long reportId) {
-        Report report = reportRepository.findById(reportId).orElse(null);
+        Report report = reportRepository.findById(reportId).orElseThrow(() -> new NoReportByIdException(String.valueOf(reportId)));
         ReportDetail reportDetail = ReportDetail.builder()
                 .reportId(report.getId())
                 .title(report.getTitle())

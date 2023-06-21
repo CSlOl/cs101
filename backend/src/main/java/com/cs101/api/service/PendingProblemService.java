@@ -7,6 +7,7 @@ import com.cs101.api.repository.problem.ProblemRepository;
 import com.cs101.api.repository.problem.TypeRepository;
 import com.cs101.dto.request.CreatePendingProblemReq;
 import com.cs101.dto.request.AcceptProblemReq;
+import com.cs101.dto.request.PendingProblemFilter;
 import com.cs101.dto.response.problem.PendingProblemDetailRes;
 import com.cs101.dto.response.problem.PendingProblemDetail;
 import com.cs101.dto.response.problem.PendingProblemListItem;
@@ -92,19 +93,11 @@ public class PendingProblemService {
         pendingProblemRepository.updatePendingStatus(pendingProblem, PendingStatus.REJECTED);
     }
 
-    public PendingProblemListRes getPendingProblemList() {
-        List<PendingProblem> pendingProblemList = pendingProblemRepository.findAll();
-
-        Stream<PendingProblemListItem> pendingProblemListItemStream = pendingProblemList.stream().map((PendingProblem p) -> PendingProblemListItem.builder()
-                .problemId(p.getId())
-                .title(p.getTitle())
-                .category(p.getCategory().getName())
-                .date(p.getRegisteredDate())
-                .status(p.getPendingStatus())
-                .build());
+    public PendingProblemListRes getPendingProblemList(PendingProblemFilter filter) {
+        List<PendingProblemListItem> pendingProblemList = pendingProblemRepository.findByFilter(filter);
 
         PendingProblemListRes pendingProblemListRes = PendingProblemListRes.builder()
-                .problems(pendingProblemListItemStream.collect(Collectors.toList()))
+                .problems(pendingProblemList)
                 .build();
 
         return pendingProblemListRes;

@@ -3,6 +3,7 @@ package com.cs101.api.controller;
 import com.cs101.api.service.PendingProblemService;
 import com.cs101.dto.request.CreatePendingProblemReq;
 import com.cs101.dto.request.AcceptProblemReq;
+import com.cs101.dto.request.PendingProblemFilter;
 import com.cs101.dto.response.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -42,10 +43,13 @@ public class PendingProblemController {
     }
 
     @GetMapping
-    public ResponseEntity<ApiResponse> getPendingProblemList() throws IOException {
+    public ResponseEntity<ApiResponse> getPendingProblemList(@RequestParam(value = "statuses", required = false) String statuses) throws IOException {
+        PendingProblemFilter filter = new PendingProblemFilter();
+        if (statuses != null) filter.setStatuses(statuses);
+
         return ResponseEntity
                 .ok()
-                .body(new ApiResponse(200, "등록 대기 문제 목록 조회 성공", pendingProblemService.getPendingProblemList()));
+                .body(new ApiResponse(200, "등록 대기 문제 목록 조회 성공", pendingProblemService.getPendingProblemList(filter)));
     }
 
     @GetMapping("/{problemId}")
