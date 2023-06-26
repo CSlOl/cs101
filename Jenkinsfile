@@ -39,9 +39,10 @@ pipeline {
 
         stage('Docker Cleanup') {
             steps {
-                sh 'echo "Docker Cleanup Start"'
-                sh 'docker stop cs101-be'
-                sh 'docker rmi jjoon0306/cs101-be'
+                if [ $( docker ps -a | grep cs101-be | wc -l ) -gt 0 ]; then
+                    sh 'echo "Docker Cleanup Start"'
+                    sh 'docker stop cs101-be'
+                    sh 'docker rmi jjoon0306/cs101-be'
             }
 
             post {
