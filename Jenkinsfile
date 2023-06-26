@@ -37,25 +37,6 @@ pipeline {
             }
         }
 
-        stage('Docker Cleanup') {
-            steps {
-                if (sh(script: 'docker ps -f "name=cs101-be"', returnStdout: true) == 0) {
-                    sh 'echo "Docker Cleanup Start"'
-                    sh 'docker stop cs101-be'
-                    sh 'docker rmi jjoon0306/cs101-be'
-                }
-            }
-
-            post {
-                success {
-                    sh 'echo "Docker Cleanup Success"'
-                }
-                failure {
-                    sh 'echo "Docker Cleanup Fail"'
-                }
-            }
-        }
-
         stage('Dockerizing'){
             steps{
                 dir('backend'){
