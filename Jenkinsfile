@@ -37,7 +37,7 @@ pipeline {
             }
         }
 
-        stage(‘Docker Cleanup’) {
+        stage('Docker Cleanup') {
             steps {
                 sh ‘echo “Docker Cleanup Start”’
                 sh ‘docker stop cs101-be’
