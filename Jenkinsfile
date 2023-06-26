@@ -38,13 +38,10 @@ pipeline {
         }
 
         stage('Docker Cleanup') {
-            try {
+            steps {
                 echo 'Docker Cleanup Start'
                 sh 'docker stop cs101-be'
                 sh 'docker rmi cs101-be'
-            }
-            catch (exc) {
-                echo 'Container Not Found'
             }
 
             post {
