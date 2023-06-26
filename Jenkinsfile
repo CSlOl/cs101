@@ -12,10 +12,10 @@ pipeline {
 
             post {
                 success {
-                    echo 'Successfully Cloned Repository'
+                    echo 'Clone Success'
                 }
                 failure {
-                    sh 'echo "Fail Cloned Repository"'
+                    echo 'Clone Failed'
                 }
             }
         }
@@ -29,27 +29,39 @@ pipeline {
 
             post {
                 success {
-                    echo 'gradle build success'
+                    echo 'Gradle Build Success'
                 }
                 failure {
-                    echo 'gradle build failed'
+                    echo 'Gradle Build Failed'
                 }
             }
         }
 
         stage('Docker Cleanup') {
             steps {
-                sh 'echo "Docker Cleanup Start"'
-                sh 'docker stop cs101-be'
-                sh 'docker rmi cs101-be'
+                echo 'Docker Cleanup Start'
+
+                try {
+                    sh 'docker stop cs101-be'
+                }
+                catch (exc) {
+                    echo 'Container Not Found'
+                }
+
+                try {
+                    sh 'docker rmi cs101-be'
+                }
+                catch (exc) {
+                    echo 'Delete Image Failed'
+                }
             }
 
             post {
                 success {
-                    sh 'echo "Docker Cleanup Success"'
+                    echo 'Docker Cleanup Success'
                 }
                 failure {
-                    sh 'echo "Docker Cleanup Fail"'
+                    echo "Docker Cleanup Failed'
                 }
             }
         }
@@ -58,17 +70,17 @@ pipeline {
         stage('Dockerizing'){
             steps{
                 dir('backend'){
-                    sh 'echo "Backend Image Bulid Start"'
+                    echo 'Backend Image Bulid Start'
                     sh 'docker build -t cs101-be .'
                 }
             }
 
             post {
                 success {
-                    sh 'echo "Bulid Docker Image Success"'
+                    echo 'Bulid Docker Image Success'
                 }
                 failure {
-                    sh 'echo "Bulid Docker Image Fail"'
+                    echo 'Bulid Docker Image Failed'
                 }
             }
         }
@@ -80,10 +92,10 @@ pipeline {
 
             post {
                 success {
-                    echo 'success'
+                    echo 'Deploy Success'
                 }
                 failure {
-                    echo 'failed'
+                    echo 'Deploy Failed'
                 }
             }
         }
@@ -91,10 +103,10 @@ pipeline {
 
     post {
         success {
-            echo 'deploy success'
+            echo 'Pipeline Success'
         }
         failure {
-            echo 'deploy failed'
+            echo 'Pipeline Failed'
         }
     }
 }
