@@ -6,6 +6,8 @@ import com.cs101.dto.response.problem.ProblemListItem;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
+
 public interface ProblemRepositoryCustom {
     Page<ProblemListItem> findByFilter(Long userId, ProblemFilter filter, Pageable pageable);
     List<DailyProblemListItem> findByIds(List<Long> idList);

@@ -83,7 +83,8 @@ public class ProblemRepositoryImpl implements ProblemRepositoryCustom {
                         eqTypes(filter.getTypes()),
                         eqStatuses(filter.getStatuses(), statusPath),
                         filter.isFavorites() ? isFavoritesPath.eq(true) : null);
-
+    }
+    @Override
     public List<DailyProblemListItem> findByIds(List<Long> idList) {
         return queryFactory
                 .select(new QDailyProblemListItem(
