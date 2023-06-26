@@ -12,7 +12,7 @@ pipeline {
 
             post {
                 success {
-                    sh 'echo "Successfully Cloned Repository"'
+                    echo 'Successfully Cloned Repository'
                 }
                 failure {
                     sh 'echo "Fail Cloned Repository"'
@@ -38,14 +38,10 @@ pipeline {
         }
 
         stage('Docker Cleanup') {
-            try {
+            steps {
                 sh 'echo "Docker Cleanup Start"'
                 sh 'docker stop cs101-be'
                 sh 'docker rmi cs101-be'
-            }
-            catch (exc) {
-                echo 'No such container named cs101-be'
-                throw
             }
 
             post {
