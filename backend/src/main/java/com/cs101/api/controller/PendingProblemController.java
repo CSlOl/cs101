@@ -6,6 +6,7 @@ import com.cs101.dto.request.AcceptProblemReq;
 import com.cs101.dto.request.PendingProblemFilter;
 import com.cs101.dto.response.ApiResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -43,13 +44,13 @@ public class PendingProblemController {
     }
 
     @GetMapping
-    public ResponseEntity<ApiResponse> getPendingProblemList(@RequestParam(value = "statuses", required = false) String statuses) throws IOException {
+    public ResponseEntity<ApiResponse> getPendingProblemList(@RequestParam(value = "statuses", required = false) String statuses, Pageable pageable) throws IOException {
         PendingProblemFilter filter = new PendingProblemFilter();
         if (statuses != null) filter.setStatuses(statuses);
 
         return ResponseEntity
                 .ok()
-                .body(new ApiResponse(200, "등록 대기 문제 목록 조회 성공", pendingProblemService.getPendingProblemList(filter)));
+                .body(new ApiResponse(200, "등록 대기 문제 목록 조회 성공", pendingProblemService.getPendingProblemList(filter, pageable)));
     }
 
     @GetMapping("/{problemId}")

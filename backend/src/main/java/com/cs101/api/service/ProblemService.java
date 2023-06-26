@@ -8,6 +8,8 @@ import com.cs101.entity.*;
 import com.cs101.exception.NoProblemByIdException;
 import com.cs101.exception.NoUserByIdException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,14 +37,8 @@ public class ProblemService {
         return problemListInfoRes;
     }
 
-    public ProblemListRes getProblemList(ProblemFilter filter) {
-        List<ProblemListItem> problemList = problemRepository.findByFilter(1L, filter);
-
-        ProblemListRes problemListRes = ProblemListRes.builder()
-                .problems(problemList)
-                .build();
-
-        return problemListRes;
+    public Page<ProblemListItem> getProblemList(ProblemFilter filter, Pageable pageable) {
+        return problemRepository.findByFilter(1L, filter, pageable);
     }
 
     public List<Problem> getProblems() {

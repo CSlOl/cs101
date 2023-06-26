@@ -2,11 +2,10 @@ package com.cs101.dto.response.problem;
 
 import lombok.Builder;
 import lombok.Getter;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
 
 @Getter
 @Builder
 public class ProblemListRes {
-    private List<ProblemListItem> problems;
+    private Page<ProblemListItem> problems;
 }

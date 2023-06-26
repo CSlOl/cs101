@@ -18,6 +18,8 @@ import com.cs101.exception.NoProblemByIdException;
 import com.cs101.exception.NoTypeByNameException;
 import com.cs101.exception.NoUserByIdException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -93,14 +95,8 @@ public class PendingProblemService {
         pendingProblemRepository.updatePendingStatus(pendingProblem, PendingStatus.REJECTED);
     }
 
-    public PendingProblemListRes getPendingProblemList(PendingProblemFilter filter) {
-        List<PendingProblemListItem> pendingProblemList = pendingProblemRepository.findByFilter(filter);
-
-        PendingProblemListRes pendingProblemListRes = PendingProblemListRes.builder()
-                .problems(pendingProblemList)
-                .build();
-
-        return pendingProblemListRes;
+    public Page<PendingProblemListItem> getPendingProblemList(PendingProblemFilter filter, Pageable pageable) {
+        return pendingProblemRepository.findByFilter(filter, pageable);
     }
 
     public PendingProblemDetailRes getPendingProblemDetail(Long pendingProblemId){

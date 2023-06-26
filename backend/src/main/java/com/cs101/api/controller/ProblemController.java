@@ -5,6 +5,7 @@ import com.cs101.dto.request.ProblemFilter;
 import com.cs101.dto.request.SubmitAnswerReq;
 import com.cs101.dto.response.ApiResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,7 +31,7 @@ public class ProblemController {
     }
 
     @GetMapping
-    public ResponseEntity<ApiResponse> getProblemList(@RequestParam(value = "categories", required = false) String categories, @RequestParam(value = "types", required = false) String types, @RequestParam(value = "statuses", required = false) String statuses, @RequestParam(value = "favorites", required = false) String favorites) {
+    public ResponseEntity<ApiResponse> getProblemList(@RequestParam(value = "categories", required = false) String categories, @RequestParam(value = "types", required = false) String types, @RequestParam(value = "statuses", required = false) String statuses, @RequestParam(value = "favorites", required = false) String favorites, Pageable pageable) {
         ProblemFilter filter = new ProblemFilter();
         if (categories != null) filter.setCategories(categories);
         if (types != null) filter.setTypes(types);
@@ -39,7 +40,7 @@ public class ProblemController {
 
         return ResponseEntity
                 .ok()
-                .body(new ApiResponse(200, "문제 목록 조회 성공", problemService.getProblemList(filter)));
+                .body(new ApiResponse(200, "문제 목록 조회 성공", problemService.getProblemList(filter, pageable)));
     }
 
     @GetMapping("/{problemId}")

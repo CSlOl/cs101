@@ -12,7 +12,11 @@ import com.querydsl.core.types.ExpressionUtils;
 import com.querydsl.core.types.dsl.*;
 import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.JPQLQuery;
+import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.support.PageableExecutionUtils;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -31,21 +35,30 @@ public class ProblemRepositoryImpl implements ProblemRepositoryCustom {
     }
 
     @Override
-    public List<ProblemListItem> findByFilter(Long userId, ProblemFilter filter) {
+    public Page<ProblemListItem> findByFilter(Long userId, ProblemFilter filter, Pageable pageable) {
         JPQLQuery<UserProblemStatus> statusPath = JPAExpressions.select(userProblem.userProblemStatus).from(userProblem).where(userProblem.problem.id.eq(problem.id), userProblem.user.id.eq(userId));
         BooleanExpression isFavoritesPath = new CaseBuilder()
                 .when(JPAExpressions.selectFrom(favorites).where(favorites.problem.id.eq(problem.id), favorites.user.id.eq(userId)).exists())
                 .then(true)
                 .otherwise(false);
 
-        return queryFactory.select(new QProblemListItem(
-                problem.id,
-                problem.title,
-                type.name,
-                category.name,
-                Expressions.dateTemplate(String.class,"DATE_FORMAT({0},{1})",problem.acceptedDate, ConstantImpl.create("%Y-%m-%d %p %h:%i")),
-                ExpressionUtils.as(statusPath, "status"),
-                isFavoritesPath.as("isFavorites")))
+        List<ProblemListItem> problemList =  getProblemList(filter, pageable, statusPath, isFavoritesPath);
+
+        JPAQuery<Long> countQuery = getCount(filter, statusPath, isFavoritesPath);
+
+        return PageableExecutionUtils.getPage(problemList, pageable, countQuery::fetchOne);
+    }
+
+    private List<ProblemListItem> getProblemList(ProblemFilter filter, Pageable pageable, JPQLQuery<UserProblemStatus> statusPath, BooleanExpression isFavoritesPath) {
+        return queryFactory
+                .select(new QProblemListItem(
+                        problem.id,
+                        problem.title,
+                        type.name,
+                        category.name,
+                        Expressions.dateTemplate(String.class,"DATE_FORMAT({0},{1})",problem.acceptedDate, ConstantImpl.create("%Y-%m-%d %p %h:%i")),
+                        ExpressionUtils.as(statusPath, "status"),
+                        isFavoritesPath.as("isFavorites")))
                 .from(problem)
                 .join(problem.category, category)
                 .join(problem.type, type)
@@ -54,8 +67,22 @@ public class ProblemRepositoryImpl implements ProblemRepositoryCustom {
                         eqTypes(filter.getTypes()),
                         eqStatuses(filter.getStatuses(), statusPath),
                         filter.isFavorites() ? isFavoritesPath.eq(true) : null)
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
                 .fetch();
     }
+
+    private JPAQuery<Long> getCount(ProblemFilter filter, JPQLQuery<UserProblemStatus> statusPath, BooleanExpression isFavoritesPath) {
+        return queryFactory
+                .select(problem.count())
+                .from(problem)
+                .join(problem.category, category)
+                .join(problem.type, type)
+                .where(
+                        eqCategories(filter.getCategories()),
+                        eqTypes(filter.getTypes()),
+                        eqStatuses(filter.getStatuses(), statusPath),
+                        filter.isFavorites() ? isFavoritesPath.eq(true) : null);
 
     public List<DailyProblemListItem> findByIds(List<Long> idList) {
         return queryFactory
