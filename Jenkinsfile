@@ -41,7 +41,7 @@ pipeline {
             steps{
                 dir('backend'){
                     sh 'echo "Backend Image Bulid Start"'
-                    sh 'docker build -t jjoon0306/cs101-be .'
+                    sh 'docker build -t cs101-be .'
                 }
             }
 
