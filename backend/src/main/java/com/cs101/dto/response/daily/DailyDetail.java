@@ -4,13 +4,12 @@ import lombok.Builder;
 import lombok.Getter;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Builder
 public class DailyDetail {
     private LocalDate date;
     private String dailyKnowledge;
-    private Long dailyProblemId1;
-    private Long dailyProblemId2;
-    private Long dailyProblemId3;
+    private List<DailyProblemListItem> dailyProblems;
 }
