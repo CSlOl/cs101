@@ -1,6 +1,8 @@
 package com.cs101.api.repository.problem;
 
 import com.cs101.dto.request.ProblemFilter;
+import com.cs101.dto.response.daily.DailyProblemListItem;
+import com.cs101.dto.response.daily.QDailyProblemListItem;
 import com.cs101.dto.response.problem.ProblemListItem;
 import com.cs101.dto.response.problem.QProblemListItem;
 import com.cs101.entity.UserProblemStatus;
@@ -81,6 +83,19 @@ public class ProblemRepositoryImpl implements ProblemRepositoryCustom {
                         eqTypes(filter.getTypes()),
                         eqStatuses(filter.getStatuses(), statusPath),
                         filter.isFavorites() ? isFavoritesPath.eq(true) : null);
+
+    public List<DailyProblemListItem> findByIds(List<Long> idList) {
+        return queryFactory
+                .select(new QDailyProblemListItem(
+                        problem.id,
+                        problem.title,
+                        type.name,
+                        category.name))
+                .from(problem)
+                .join(problem.type, type)
+                .join(problem.category, category)
+                .where(problem.id.in(idList))
+                .fetch();
     }
 
     private BooleanExpression eqCategories(List<String> categories) {
