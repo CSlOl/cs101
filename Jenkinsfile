@@ -37,6 +37,24 @@ pipeline {
             }
         }
 
+        stage(‘Docker Cleanup’) {
+            steps {
+                sh ‘echo “Docker Cleanup Start”’
+                sh ‘docker stop cs101-be’
+                sh ‘docker rmi cs101-be’
+            }
+
+            post {
+                success {
+                    sh ‘echo “Docker Cleanup Success”’
+                }
+                failure {
+                    sh ‘echo “Docker Cleanup Fail”’
+                }
+            }
+        }
+
+
         stage('Dockerizing'){
             steps{
                 dir('backend'){
