@@ -4,7 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bc7f5230-93c4-47ba-8317-42b245625377" name="Changes" comment="CI: fix Jenkinsfile" />
+    <list default="true" id="bc7f5230-93c4-47ba-8317-42b245625377" name="Changes" comment="CI: fix Jenkinsfile">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/cs101/api/controller/PendingProblemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/cs101/api/controller/PendingProblemController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/cs101/api/controller/ProblemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/cs101/api/controller/ProblemController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/cs101/api/repository/problem/PendingProblemRepositoryCustom.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/cs101/api/repository/problem/PendingProblemRepositoryCustom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/cs101/api/repository/problem/PendingProblemRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/cs101/api/repository/problem/PendingProblemRepositoryImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/cs101/api/repository/problem/ProblemRepositoryCustom.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/cs101/api/repository/problem/ProblemRepositoryCustom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/cs101/api/repository/problem/ProblemRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/cs101/api/repository/problem/ProblemRepositoryImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/cs101/api/service/PendingProblemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/cs101/api/service/PendingProblemService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/cs101/api/service/ProblemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/cs101/api/service/ProblemService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/cs101/dto/response/problem/ProblemListRes.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/cs101/dto/response/problem/ProblemListRes.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -32,6 +43,10 @@
             <RecentBranchesForRepo>
               <option name="branches">
                 <list>
+                  <RecentBranch>
+                    <option name="branchName" value="feat/be-problem" />
+                    <option name="lastUsedInstant" value="1687772023" />
+                  </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="develop" />
                     <option name="lastUsedInstant" value="1680254205" />
@@ -103,7 +118,7 @@
       <workItem from="1680250091771" duration="4136000" />
       <workItem from="1680256475265" duration="13903000" />
       <workItem from="1680773377660" duration="5914000" />
-      <workItem from="1687764332100" duration="395000" />
+      <workItem from="1687764332100" duration="8224000" />
     </task>
     <task id="LOCAL-00001" summary="CI: create Jenkinsfile">
       <created>1680250530353</created>
@@ -287,7 +302,126 @@
       <option name="project" value="LOCAL" />
       <updated>1681153608119</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="CI: fix Jenkinsfile">
+      <created>1687764835952</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1687764835952</updated>
+    </task>
+    <task id="LOCAL-00028" summary="CI: fix Jenkinsfile">
+      <created>1687765357239</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1687765357239</updated>
+    </task>
+    <task id="LOCAL-00029" summary="CI: fix Jenkinsfile">
+      <created>1687766436097</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1687766436097</updated>
+    </task>
+    <task id="LOCAL-00030" summary="CI: fix Jenkinsfile">
+      <created>1687766758175</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1687766758175</updated>
+    </task>
+    <task id="LOCAL-00031" summary="CI: fix Jenkinsfile">
+      <created>1687766929854</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1687766929854</updated>
+    </task>
+    <task id="LOCAL-00032" summary="CI: fix Jenkinsfile">
+      <created>1687767525643</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1687767525643</updated>
+    </task>
+    <task id="LOCAL-00033" summary="CI: fix Jenkinsfile">
+      <created>1687767595199</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1687767595199</updated>
+    </task>
+    <task id="LOCAL-00034" summary="CI: fix Jenkinsfile">
+      <created>1687768568365</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1687768568365</updated>
+    </task>
+    <task id="LOCAL-00035" summary="CI: fix Jenkinsfile">
+      <created>1687769362323</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1687769362323</updated>
+    </task>
+    <task id="LOCAL-00036" summary="CI: fix Jenkinsfile">
+      <created>1687769472457</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1687769472457</updated>
+    </task>
+    <task id="LOCAL-00037" summary="CI: fix Jenkinsfile">
+      <created>1687769617270</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1687769617270</updated>
+    </task>
+    <task id="LOCAL-00038" summary="CI: fix Jenkinsfile">
+      <created>1687770413782</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1687770413782</updated>
+    </task>
+    <task id="LOCAL-00039" summary="CI: fix Jenkinsfile">
+      <created>1687770508325</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1687770508325</updated>
+    </task>
+    <task id="LOCAL-00040" summary="CI: fix Jenkinsfile">
+      <created>1687770931285</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1687770931285</updated>
+    </task>
+    <task id="LOCAL-00041" summary="CI: fix Jenkinsfile">
+      <created>1687770980441</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1687770980441</updated>
+    </task>
+    <task id="LOCAL-00042" summary="CI: fix Jenkinsfile">
+      <created>1687771527438</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1687771527438</updated>
+    </task>
+    <task id="LOCAL-00043" summary="CI: fix Jenkinsfile">
+      <created>1687771739486</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1687771739486</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
