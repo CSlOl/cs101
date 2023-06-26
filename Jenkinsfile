@@ -39,9 +39,7 @@ pipeline {
 
         stage('Docker Cleanup') {
             steps {
-                def containerExists = sh(script: 'docker ps -f "name=cs101-be"', returnStdout: true) == 0
-
-                if (!containerExists) {
+                if (sh(script: 'docker ps -f "name=cs101-be"', returnStdout: true) == 0) {
                     sh 'echo "Docker Cleanup Start"'
                     sh 'docker stop cs101-be'
                     sh 'docker rmi jjoon0306/cs101-be'
