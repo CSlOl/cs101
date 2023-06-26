@@ -38,10 +38,14 @@ pipeline {
         }
 
         stage('Docker Cleanup') {
-            steps {
+            try {
                 sh 'echo "Docker Cleanup Start"'
                 sh 'docker stop cs101-be'
                 sh 'docker rmi cs101-be'
+            }
+            catch (exc) {
+                echo 'No such container named cs101-be'
+                throw
             }
 
             post {
