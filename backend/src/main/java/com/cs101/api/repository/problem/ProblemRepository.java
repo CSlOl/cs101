@@ -13,4 +13,10 @@ public interface ProblemRepository extends JpaRepository<Problem, Long>, Problem
     List<String[]> getTypeInfo();
     @Query("SELECT c.name, COUNT(p.id) FROM Category c LEFT JOIN Problem p ON p.category = c GROUP BY c.id")
     List<String[]> getCategoryInfo();
+
+    @Query("SELECT COUNT(*) FROM Problem p")
+    Long getProblemSize();
+
+    @Query(value = "SELECT problem_id FROM Problem order by RAND() limit 3",nativeQuery = true)
+    List<Long> getRandomProblem();
 }
