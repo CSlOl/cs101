@@ -37,4 +37,4 @@ spring:
     level:
       org.hibernate.SQL: debug
 
-salt: "tkddnrkaksemsthfxm"
+salt: ${SALT}

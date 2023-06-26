@@ -57,7 +57,7 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                sh 'docker run -d --rm -p 8080:80 -e CS101_DB_URL=$CS101_DB_URL -e CS101_DB_USERNAME=$CS101_DB_USERNAME -e CS101_DB_PASSWORD=$CS101_DB_PASSWORD --name cs101-be cs101-be'
+                sh 'docker run -d --rm -p 8080:80 -e CS101_DB_URL=$CS101_DB_URL -e CS101_DB_USERNAME=$CS101_DB_USERNAME -e CS101_DB_PASSWORD=$CS101_DB_PASSWORD -e SALT=$SALT --name cs101-be cs101-be'
             }
 
             post {
