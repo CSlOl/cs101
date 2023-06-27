@@ -27,8 +27,7 @@ public class UserController {
 
     @PutMapping()
     public ResponseEntity<ApiResponse> updateUser(@RequestBody UpdateUserReq updateUserReq) throws IOException {
-//        Long userId = jwtUtil.getUserId();
-        Long userId = 1L;
+        Long userId = jwtUtil.getUserId();
         userService.updateUser(updateUserReq, userId);
         return ResponseEntity
                 .ok()

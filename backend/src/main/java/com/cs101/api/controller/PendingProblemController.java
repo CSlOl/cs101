@@ -5,6 +5,7 @@ import com.cs101.dto.request.CreatePendingProblemReq;
 import com.cs101.dto.request.AcceptProblemReq;
 import com.cs101.dto.request.PendingProblemFilter;
 import com.cs101.dto.response.ApiResponse;
+import com.cs101.util.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -17,10 +18,12 @@ import java.io.IOException;
 @RequestMapping("/problem/pending")
 public class PendingProblemController {
     private final PendingProblemService pendingProblemService;
+    private final JwtUtil jwtUtil;
+
 
     @PostMapping
     public ResponseEntity<ApiResponse> createPendingProblem(@RequestBody CreatePendingProblemReq createPendingProblemReq) throws IOException {
-        Long userId = 1L;
+        Long userId = jwtUtil.getUserId();
         pendingProblemService.createPendingProblem(createPendingProblemReq, userId);
         return ResponseEntity
                 .ok()

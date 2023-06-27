@@ -6,6 +6,7 @@ import com.cs101.dto.request.ProblemFilter;
 import com.cs101.dto.request.ReportFilter;
 import com.cs101.dto.request.UpdateReportReq;
 import com.cs101.dto.response.ApiResponse;
+import com.cs101.util.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,10 +18,12 @@ import java.io.IOException;
 @RequestMapping("/report")
 public class ReportController {
     private final ReportService reportService;
+    private final JwtUtil jwtUtil;
+
 
     @PostMapping
     public ResponseEntity<ApiResponse> createReport(@RequestBody CreateReportReq createReportReq) throws IOException {
-        Long userId = 1L;
+        Long userId = jwtUtil.getUserId();
         reportService.createReport(createReportReq, userId);
         return ResponseEntity
                 .ok()

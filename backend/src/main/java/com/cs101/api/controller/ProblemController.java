@@ -4,6 +4,7 @@ import com.cs101.api.service.ProblemService;
 import com.cs101.dto.request.ProblemFilter;
 import com.cs101.dto.request.SubmitAnswerReq;
 import com.cs101.dto.response.ApiResponse;
+import com.cs101.util.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -14,10 +15,12 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/problem")
 public class ProblemController {
     private final ProblemService problemService;
+    private final JwtUtil jwtUtil;
+
 
     @PostMapping
     public ResponseEntity<ApiResponse> submitAnswer(@RequestBody SubmitAnswerReq submitAnswerReq) {
-        Long userId = 1L;
+        Long userId = jwtUtil.getUserId();
         return ResponseEntity
                 .ok()
                 .body(new ApiResponse(200, "답안 제출 성공", problemService.checkAnswer(userId, submitAnswerReq.getProblemId(), submitAnswerReq.getAnswer())));
@@ -32,6 +35,8 @@ public class ProblemController {
 
     @GetMapping
     public ResponseEntity<ApiResponse> getProblemList(@RequestParam(value = "categories", required = false) String categories, @RequestParam(value = "types", required = false) String types, @RequestParam(value = "statuses", required = false) String statuses, @RequestParam(value = "favorites", required = false) String favorites, Pageable pageable) {
+        Long userId = jwtUtil.getUserId();
+
         ProblemFilter filter = new ProblemFilter();
         if (categories != null) filter.setCategories(categories);
         if (types != null) filter.setTypes(types);
@@ -40,12 +45,12 @@ public class ProblemController {
 
         return ResponseEntity
                 .ok()
-                .body(new ApiResponse(200, "문제 목록 조회 성공", problemService.getProblemList(filter, pageable)));
+                .body(new ApiResponse(200, "문제 목록 조회 성공", problemService.getProblemList(userId, filter, pageable)));
     }
 
     @GetMapping("/{problemId}")
     public ResponseEntity<ApiResponse> getProblemDetail(@PathVariable Long problemId){
-        Long userId = 1L;
+        Long userId = jwtUtil.getUserId();
         return ResponseEntity
                 .ok()
                 .body(new ApiResponse(200, "문제 상세 조회 성공", problemService.getProblemDetail(userId, problemId)));
@@ -53,7 +58,7 @@ public class ProblemController {
 
     @PostMapping("/favorites/{problemId}")
     public ResponseEntity<ApiResponse> addFavorites(@PathVariable Long problemId){
-        Long userId = 1L;
+        Long userId = jwtUtil.getUserId();
         problemService.addFavorites(userId, problemId);
         return ResponseEntity
                 .ok()
@@ -62,7 +67,7 @@ public class ProblemController {
 
     @DeleteMapping("/favorites/{problemId}")
     public ResponseEntity<ApiResponse> deleteFavorites(@PathVariable Long problemId){
-        Long userId = 1L;
+        Long userId = jwtUtil.getUserId();
         problemService.deleteFavorites(userId, problemId);
         return ResponseEntity
                 .ok()
