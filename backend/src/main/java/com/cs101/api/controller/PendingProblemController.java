@@ -38,9 +38,9 @@ public class PendingProblemController {
                 .body(new ApiResponse(200, "등록 대기 문제 승인 성공", null));
     }
 
-    @PutMapping("/authorization/{problemId}")
-    public ResponseEntity<ApiResponse> refuseProblem(@PathVariable Long problemId) throws IOException {
-        pendingProblemService.refuseProblem(problemId);
+    @PutMapping("/authorization/{pendingProblemId}")
+    public ResponseEntity<ApiResponse> refuseProblem(@PathVariable Long pendingProblemId) throws IOException {
+        pendingProblemService.refuseProblem(pendingProblemId);
         return ResponseEntity
                 .ok()
                 .body(new ApiResponse(200, "등록 대기 문제 거절 성공", null));

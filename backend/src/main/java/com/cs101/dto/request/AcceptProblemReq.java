@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AcceptProblemReq {
-    private Long problemId;
+    private Long pendingProblemId;
     private String title;
     private String category;
     private String type;
