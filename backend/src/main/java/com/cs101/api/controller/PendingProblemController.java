@@ -1,6 +1,7 @@
 package com.cs101.api.controller;
 
 import com.cs101.api.service.PendingProblemService;
+import com.cs101.api.service.UserService;
 import com.cs101.dto.request.CreatePendingProblemReq;
 import com.cs101.dto.request.AcceptProblemReq;
 import com.cs101.dto.request.PendingProblemFilter;
@@ -19,6 +20,7 @@ import java.io.IOException;
 public class PendingProblemController {
     private final PendingProblemService pendingProblemService;
     private final JwtUtil jwtUtil;
+    private final UserService userService;
 
 
     @PostMapping
@@ -32,18 +34,29 @@ public class PendingProblemController {
 
     @PostMapping("/authorization")
     public ResponseEntity<ApiResponse> acceptProblem(@RequestBody AcceptProblemReq acceptProblemReq) throws IOException {
-        pendingProblemService.acceptProblem(acceptProblemReq);
+        if (userService.checkAdmin(jwtUtil.getUserId())) {
+            pendingProblemService.acceptProblem(acceptProblemReq);
+            return ResponseEntity
+                    .ok()
+                    .body(new ApiResponse(200, "등록 대기 문제 승인 성공", null));
+        }
         return ResponseEntity
                 .ok()
-                .body(new ApiResponse(200, "등록 대기 문제 승인 성공", null));
+                .body(new ApiResponse(406, "권한 없음", null));
     }
 
     @PutMapping("/authorization/{pendingProblemId}")
     public ResponseEntity<ApiResponse> refuseProblem(@PathVariable Long pendingProblemId) throws IOException {
-        pendingProblemService.refuseProblem(pendingProblemId);
+        if (userService.checkAdmin(jwtUtil.getUserId())) {
+
+            pendingProblemService.refuseProblem(pendingProblemId);
+            return ResponseEntity
+                    .ok()
+                    .body(new ApiResponse(200, "등록 대기 문제 거절 성공", null));
+        }
         return ResponseEntity
                 .ok()
-                .body(new ApiResponse(200, "등록 대기 문제 거절 성공", null));
+                .body(new ApiResponse(406, "권한 없음", null));
     }
 
     @GetMapping

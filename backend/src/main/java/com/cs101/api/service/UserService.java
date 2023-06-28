@@ -62,4 +62,9 @@ public class UserService {
             }
         }
     }
+
+    public boolean checkAdmin(Long userId) {
+        User user = userRepository.findById(userId).orElse(null);
+        return user.isAdmin();
+    }
 }
