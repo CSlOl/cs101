@@ -48,7 +48,6 @@ public class PendingProblemController {
     @PutMapping("/authorization/{pendingProblemId}")
     public ResponseEntity<ApiResponse> refuseProblem(@PathVariable Long pendingProblemId) throws IOException {
         if (userService.checkAdmin(jwtUtil.getUserId())) {
-
             pendingProblemService.refuseProblem(pendingProblemId);
             return ResponseEntity
                     .ok()

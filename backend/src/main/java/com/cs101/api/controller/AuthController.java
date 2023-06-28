@@ -1,6 +1,7 @@
 package com.cs101.api.controller;
 
 import com.cs101.api.service.AuthService;
+import com.cs101.api.service.UserService;
 import com.cs101.dto.request.LoginReq;
 import com.cs101.dto.request.RegisterUserReq;
 import com.cs101.dto.request.RejoinUserReq;
@@ -29,9 +30,15 @@ public class AuthController {
     private final AuthService authService;
     private final JwtUtil jwtUtil;
     private final CookieUtil cookieUtil;
+    private final UserService userService;
 
     @PostMapping("/signup")
     public ResponseEntity<ApiResponse> registerUser(@RequestBody RegisterUserReq registerUserReq) throws IOException {
+        if (userService.existsByEmail(registerUserReq.getEmail())) {
+            return ResponseEntity
+                    .ok()
+                    .body(new ApiResponse(403, "이미 존재하는 이메일입니다.", null));
+        }
         authService.registerUser(registerUserReq);
         return ResponseEntity
                 .ok()

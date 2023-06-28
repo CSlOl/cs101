@@ -67,4 +67,6 @@ public class UserService {
         User user = userRepository.findById(userId).orElse(null);
         return user.isAdmin();
     }
+
+    public boolean existsByEmail(String email) {return userRepository.existsByEmail(email);}
 }
