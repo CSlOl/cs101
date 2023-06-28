@@ -37,8 +37,8 @@ public class ProblemService {
         return problemListInfoRes;
     }
 
-    public Page<ProblemListItem> getProblemList(ProblemFilter filter, Pageable pageable) {
-        return problemRepository.findByFilter(1L, filter, pageable);
+    public Page<ProblemListItem> getProblemList(Long userId, ProblemFilter filter, Pageable pageable) {
+        return problemRepository.findByFilter(userId, filter, pageable);
     }
 
     public List<Problem> getProblems() {
@@ -49,7 +49,7 @@ public class ProblemService {
         User user = userRepository.findById(userId).orElseThrow(() -> new NoUserByIdException(String.valueOf(userId)));
         Problem problem = problemRepository.findById(problemId).orElseThrow(() -> new NoProblemByIdException(String.valueOf(problemId)));
         Boolean isFavorite = favoritesRepository.findById(user, problem).isPresent();
-        UserProblemStatus status = userProblemRepository.getProblemStatus(1L, 1L).orElse(UserProblemStatus.UNSOLVED);
+        UserProblemStatus status = userProblemRepository.getProblemStatus(userId, problemId).orElse(UserProblemStatus.UNSOLVED);
 
         ProblemDetail problemDetail = ProblemDetail.builder()
                 .question(problem.getQuestion())
