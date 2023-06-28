@@ -29,7 +29,7 @@ public class PendingProblemController {
         pendingProblemService.createPendingProblem(createPendingProblemReq, userId);
         return ResponseEntity
                 .ok()
-                .body(new ApiResponse(200, "문제 등록 성공", null));
+                .body(new ApiResponse(201, "문제 등록 성공", null));
     }
 
     @PostMapping("/authorization")
@@ -38,7 +38,7 @@ public class PendingProblemController {
             pendingProblemService.acceptProblem(acceptProblemReq);
             return ResponseEntity
                     .ok()
-                    .body(new ApiResponse(200, "등록 대기 문제 승인 성공", null));
+                    .body(new ApiResponse(201, "등록 대기 문제 승인 성공", null));
         }
         return ResponseEntity
                 .ok()
@@ -52,7 +52,7 @@ public class PendingProblemController {
             pendingProblemService.refuseProblem(pendingProblemId);
             return ResponseEntity
                     .ok()
-                    .body(new ApiResponse(200, "등록 대기 문제 거절 성공", null));
+                    .body(new ApiResponse(201, "등록 대기 문제 거절 성공", null));
         }
         return ResponseEntity
                 .ok()

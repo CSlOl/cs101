@@ -23,7 +23,7 @@ public class ProblemController {
         Long userId = jwtUtil.getUserId();
         return ResponseEntity
                 .ok()
-                .body(new ApiResponse(200, "답안 제출 성공", problemService.checkAnswer(userId, submitAnswerReq.getProblemId(), submitAnswerReq.getAnswer())));
+                .body(new ApiResponse(201, "답안 제출 성공", problemService.checkAnswer(userId, submitAnswerReq.getProblemId(), submitAnswerReq.getAnswer())));
     }
 
     @GetMapping("/listInfo")
@@ -62,7 +62,7 @@ public class ProblemController {
         problemService.addFavorites(userId, problemId);
         return ResponseEntity
                 .ok()
-                .body(new ApiResponse(200, "즐겨찾기 추가 성공", null));
+                .body(new ApiResponse(201, "즐겨찾기 추가 성공", null));
     }
 
     @DeleteMapping("/favorites/{problemId}")
@@ -71,6 +71,6 @@ public class ProblemController {
         problemService.deleteFavorites(userId, problemId);
         return ResponseEntity
                 .ok()
-                .body(new ApiResponse(200, "즐겨찾기 삭제 성공", null));
+                .body(new ApiResponse(201, "즐겨찾기 삭제 성공", null));
     }
 }
