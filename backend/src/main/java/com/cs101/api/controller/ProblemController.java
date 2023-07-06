@@ -36,6 +36,7 @@ public class ProblemController {
     @GetMapping
     public ResponseEntity<ApiResponse> getProblemList(@RequestParam(value = "categories", required = false) String categories, @RequestParam(value = "types", required = false) String types, @RequestParam(value = "statuses", required = false) String statuses, @RequestParam(value = "favorites", required = false) String favorites, Pageable pageable) {
         Long userId = jwtUtil.getUserId();
+        System.out.println(userId);
 
         ProblemFilter filter = new ProblemFilter();
         if (categories != null) filter.setCategories(categories);

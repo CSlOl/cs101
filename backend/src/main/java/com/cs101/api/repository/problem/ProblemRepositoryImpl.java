@@ -36,7 +36,7 @@ public class ProblemRepositoryImpl implements ProblemRepositoryCustom {
 
     @Override
     public Page<ProblemListItem> findByFilter(Long userId, ProblemFilter filter, Pageable pageable) {
-        JPQLQuery<UserProblemStatus> statusPath = JPAExpressions.select(userProblem.userProblemStatus).from(userProblem).where(userProblem.problem.id.eq(problem.id), userProblem.user.id.eq(userId));
+        JPQLQuery<UserProblemStatus> statusPath = JPAExpressions.select(userProblem.userProblemStatus).from(userProblem).where(userProblem.id.eq(JPAExpressions.select(userProblem.id.max()).from(userProblem).where(problem.id.eq(problem.id), userProblem.user.id.eq(userId))));
         BooleanExpression isFavoritesPath = new CaseBuilder()
                 .when(JPAExpressions.selectFrom(favorites).where(favorites.problem.id.eq(problem.id), favorites.user.id.eq(userId)).exists())
                 .then(true)
