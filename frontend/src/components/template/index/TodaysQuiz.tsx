@@ -52,8 +52,8 @@ export default function TodaysQuiz() {
     <Container>
       <div className="title">오늘의 추천문제</div>
       <Cards>
-        {questions.map((question) => (
-          <Link href="/quizzes">
+        {questions.map((question, idx) => (
+          <Link key={idx} href="/quizzes">
             {/* 추후 해당 문제 링크로 이동 */}
             <TodaysQuizCard
               key={id}

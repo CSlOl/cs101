@@ -19,6 +19,7 @@ export default function SignUpBody() {
   const [error, setError] = useState(false); // 문어 로고 바꾸기 위해 사용
 
   const router = useRouter();
+  const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
   function emailChange(e: ChangeEvent<HTMLInputElement>) {
     setEmail(e.target.value);
@@ -99,7 +100,7 @@ export default function SignUpBody() {
       setError(true);
     } else {
       axios
-        .post("http://3.37.123.84:8080/api/auth/signup", data)
+        .post(`${baseURL}/api/auth/signup`, data)
         .then((res) => {
           console.log(res);
           if (res.data.statusCode === 201) {
@@ -119,7 +120,9 @@ export default function SignUpBody() {
         })
         .catch(() => {
           // 예외 오류 발생 시 alert
-          alert("일시적인 오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
+          swal("일시적인 오류가 발생했습니다. 잠시 후 다시 시도해주세요.", {
+            icon: "error",
+          });
         });
     }
   }

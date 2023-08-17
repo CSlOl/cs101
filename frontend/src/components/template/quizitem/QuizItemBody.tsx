@@ -6,6 +6,7 @@ import { useRecoilState } from "recoil";
 import typeState from "../../../recoil/type";
 import { useEffect } from "react";
 import styled from "@emotion/styled";
+import api from "@/interceptor";
 
 const Div = styled.div`
   width: 95vw;
@@ -13,9 +14,13 @@ const Div = styled.div`
 
 export default function QuizItemBody() {
   const [type, setType] = useRecoilState(typeState);
+  const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
   useEffect(() => {
-    setType("short-answer");
+    setType("multiple");
+    api.get(`${baseURL}/api/problem/1`).then((res) => {
+      console.log(res);
+    });
   }, []);
 
   return (
