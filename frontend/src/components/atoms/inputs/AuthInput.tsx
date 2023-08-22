@@ -42,6 +42,7 @@ export default function AuthInput(props: Props) {
 
 const Div = styled.div`
   position: relative;
+  width: 31rem;
 `;
 
 const Input = styled.input`
