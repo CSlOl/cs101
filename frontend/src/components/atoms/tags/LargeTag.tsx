@@ -5,14 +5,14 @@ interface Props {
 }
 
 const Tag = styled.button`
-  width: 130px;
   height: 35px;
   background-color: #26bba0;
-  font-size: 1.3em;
+  font-size: 1.2em;
   border-radius: 8px;
   border: none;
   color: white;
   margin-right: 5px;
+  padding: 0 10px;
 `;
 
 // 개별 문제 내 문제 설명해주는 태그 (이미 푼 문제 / 자료구조 / 객관식 등)
