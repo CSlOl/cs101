@@ -3,6 +3,13 @@ import LargeTag from "@/components/atoms/tags/LargeTag";
 import styled from "@emotion/styled";
 import { useState } from "react";
 
+interface Props {
+  problem: {
+    question: string;
+    options: string[];
+  };
+}
+
 const Container = styled.div`
   display: flex;
   justify-content: space-between;
@@ -23,23 +30,25 @@ const RightDiv = styled.div`
   }
 `;
 
-export default function SubHeader() {
+export default function SubHeader(props: any) {
   const [creator, setCreator] = useState<string>("qminlee723");
 
   return (
     // 개별 문제 조회 서브헤더
     <Container>
       <TagDiv>
-        <LargeTag label="😎 푼 문제" />
-        <LargeTag label="자료구조" />
-        <LargeTag label="네트워크" />
+        <LargeTag
+          label={props.props.status === "UNSOLVED" ? "🤔 처음 푸는 문제" : "😎 이미 푼 문제"}
+        />
+        <LargeTag label={props.props.category} />
+        <LargeTag label="객관식" />
       </TagDiv>
 
       <RightDiv>
         <div className="creator">
-          <p>문제만든사람: {creator}</p>
+          <p>문제만든사람: {props.props.authorName}</p>
         </div>
-        <FavoriteButton />
+        <FavoriteButton fav={props.props.isFavorite} />
       </RightDiv>
     </Container>
   );
