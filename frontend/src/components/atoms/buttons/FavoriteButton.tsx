@@ -1,10 +1,13 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import api from "@/interceptor";
+import { useRouter } from "next/router";
 
 export default function FavoriteButton(props: any) {
   const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
   const [favorite, setFavorite] = useState<boolean>(false);
+  const router = useRouter();
+  const { id } = router.query;
 
   // 문제 초기 상태 값으로 별모양 표시
   useEffect(() => {
@@ -18,7 +21,7 @@ export default function FavoriteButton(props: any) {
   function handleFavorite() {
     if (favorite) {
       api
-        .delete(`${baseURL}/api/problem/favorites/1`)
+        .delete(`${baseURL}/api/problem/favorites/${id}`)
         .then((res) => {
           setFavorite(false);
         })
@@ -27,7 +30,7 @@ export default function FavoriteButton(props: any) {
         });
     } else {
       api
-        .post(`${baseURL}/api/problem/favorites/1`)
+        .post(`${baseURL}/api/problem/favorites/${id}`)
         .then((res) => {
           setFavorite(true);
         })
