@@ -1,7 +1,7 @@
 import QuizItemBody from "@/components/template/quizitem/QuizItemBody";
-import SubHeader from "@/components/template/quizitem/SubHeader";
-import Header from "../components/Header";
+import Header from "../../components/Header";
 import styled from "@emotion/styled";
+import { useRouter } from "next/router";
 
 const Container = styled.div`
   display: flex;
@@ -15,7 +15,6 @@ export default function QuizItem() {
       <Header />
       {/* 개별 문제 조회 */}
       <Container>
-        <SubHeader />
         <QuizItemBody />
       </Container>
     </div>
