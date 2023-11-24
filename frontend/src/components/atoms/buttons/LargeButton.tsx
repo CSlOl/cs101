@@ -2,7 +2,26 @@ import styled from "@emotion/styled";
 
 interface Props {
   label: string;
+  type?: string;
+  onClick: () => void;
 }
+
+const Div = styled.div`
+  .half {
+    width: 47vw;
+  }
+
+  .red {
+    background-color: #ef7474;
+    width: 47vw;
+    &:hover {
+      background-color: #cc6e6e;
+    }
+  }
+
+  .full {
+  }
+`;
 
 const Button = styled.button`
   margin-top: 10px;
@@ -26,5 +45,11 @@ const Button = styled.button`
  * @returns
  */
 export default function LargeButton(props: Props) {
-  return <Button>{props.label}</Button>;
+  return (
+    <Div>
+      <Button onClick={props.onClick} className={props.type}>
+        {props.label}
+      </Button>
+    </Div>
+  );
 }

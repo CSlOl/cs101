@@ -1,5 +1,10 @@
 import styled from "@emotion/styled";
+import { ChangeEvent } from "react";
 
+interface Props {
+  value: string;
+  onChange: (event: ChangeEvent<HTMLInputElement>, index?: number) => void;
+}
 const Input = styled.input`
   border-radius: 10px;
   width: 100%;
@@ -18,6 +23,6 @@ const Input = styled.input`
   }
 `;
 
-export default function SmallInput() {
-  return <Input />;
+export default function SmallInput({ value, onChange }: Props) {
+  return <Input value={value} onChange={onChange} />;
 }
