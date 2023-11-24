@@ -1,8 +1,7 @@
-import typeState from "@/recoil/type";
-import categoryState from "@/recoil/category";
 import styled from "@emotion/styled";
 import { useRecoilState } from "recoil";
 import Dropdown from "../atoms/etc/Dropdown";
+import newQuizState from "@/recoil/newquiz";
 
 const Container = styled.div`
   font-family: "DungGeunMo";
@@ -26,9 +25,9 @@ const Text2 = styled.div`
  */
 export default function CreateQuizCategory() {
   const types = [
-    { value: "multiple", name: "객관식" },
-    { value: "short-answer", name: "주관식" },
-    { value: "essay", name: "서술형" },
+    { value: "객관식", name: "객관식" },
+    { value: "주관식", name: "주관식" },
+    { value: "서술형", name: "서술형" },
   ];
   const categories = [
     { value: "네트워크", name: "네트워크" },
@@ -38,14 +37,14 @@ export default function CreateQuizCategory() {
     { value: "앱", name: "앱" },
   ];
 
-  const [type, setType] = useRecoilState(typeState);
+  const [newQuiz, setNewQuiz] = useRecoilState(newQuizState);
+
   const handleType = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setType(e.target.value);
+    setNewQuiz((prev) => ({ ...prev, type: e.target.value }));
   };
 
-  const [category, setCategory] = useRecoilState(categoryState);
   const handleCategory = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setCategory(e.target.value);
+    setNewQuiz((prev) => ({ ...prev, category: e.target.value }));
   };
 
   return (

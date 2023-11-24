@@ -1,4 +1,11 @@
 import styled from "@emotion/styled";
+import { ChangeEvent } from "react";
+
+interface Props {
+  value: string;
+  onChange: any;
+  // onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+}
 
 const Textarea = styled.textarea`
   border-radius: 10px;
@@ -18,6 +25,6 @@ const Textarea = styled.textarea`
   }
 `;
 
-export default function LargeInput() {
-  return <Textarea />;
+export default function LargeInput({ value, onChange }: Props) {
+  return <Textarea value={value} onChange={onChange} />;
 }
