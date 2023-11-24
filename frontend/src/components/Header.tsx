@@ -58,7 +58,7 @@ export default function Header() {
 
   function logout() {
     axios.get(`${baseURL}/api/auth/logout`).then((res) => {
-      console.log(res);
+      // console.log(res);
       if (res.data.statusCode === 200) {
         localStorage.clear();
         setLogin(false);

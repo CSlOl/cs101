@@ -102,7 +102,7 @@ export default function SignUpBody() {
       axios
         .post(`${baseURL}/api/auth/signup`, data)
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           if (res.data.statusCode === 201) {
             swal("회원가입이 완료되었습니다", {
               icon: "success",
