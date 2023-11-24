@@ -1,6 +1,9 @@
 import styled from "@emotion/styled";
 import router from "next/router";
 import { useEffect } from "react";
+import api from "@/interceptor";
+import newQuizState from "@/recoil/newquiz";
+import { useRecoilState } from "recoil";
 
 // 모달 창 뒷배경
 export const SearchModalBox = styled.div`
@@ -42,7 +45,11 @@ export const SearchModalContent = styled.div`
     font-size: 1.7em;
   }
   > div:nth-of-type(4) {
-    margin-top: 10px;
+    margin-top: 15px;
+    font-size: 1em;
+  }
+  > div:nth-of-type(5) {
+    margin-top: 5px;
     font-size: 1em;
   }
   > div {
@@ -53,7 +60,7 @@ export const SearchModalContent = styled.div`
       border: none;
       width: 180px;
       margin-top: 20px;
-      padding: 0.4rem 0.6rem;
+      padding: 0.2rem 0.6rem;
       font-size: 0.9rem;
       margin-right: 10px;
       border-radius: 5px;
@@ -88,9 +95,20 @@ export default function CreateModal(props: Props) {
     };
   }, []);
 
-  const onSubmit = () => {
-    router.push("/");
-  };
+  const [newQuiz, setNewQuiz] = useRecoilState(newQuizState);
+
+  const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
+
+  function onSubmit() {
+    api
+      .post(`${baseURL}/api/problem/pending`, newQuiz)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }
 
   return (
     <SearchModalBox onClick={props.clickModal}>
@@ -98,9 +116,8 @@ export default function CreateModal(props: Props) {
         <div onClick={props.clickModal}>X</div>
         <div>알림!</div>
         <div>제출한 문제는 관리자 승인 이후 등록됩니다.</div>
-        <div>
-          과정 중 수정사항이 발견될 경우, 문제 내용이 변경될 수 있습니다.
-        </div>
+        <div>문제 내용과 카테고리가 정확히 등록되었는지 다시 한 번 확인해주세요.</div>
+        <div>과정 중 수정사항이 발견될 경우, 문제 내용이 변경될 수 있습니다.</div>
         <div>
           <button onClick={onSubmit}>계속하기</button>
           <button onClick={props.clickModal}>취소하기</button>
